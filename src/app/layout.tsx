@@ -35,13 +35,20 @@ export const metadata: Metadata = {
     url: SITE.url,
     title: `${SITE.name}: Football News, Transfers & Analysis`,
     description: SITE.description,
-    images: [{ url: "/og-default.jpg", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/images/og-image.webp",
+        width: 1536,
+        height: 1024,
+        alt: `${SITE.name}: Football News, Transfers & Analysis`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name}: Football News, Transfers & Analysis`,
     description: SITE.description,
-    images: ["/og-default.jpg"],
+    images: ["/images/og-image.webp"],
   },
   alternates: {
     canonical: "/",
