@@ -48,6 +48,5 @@ export const FOOTER_LINKS = {
 
 export const SOCIAL_LINKS = [
   { label: "Facebook", href: "https://www.facebook.com/news.soccer365" },
-  { label: "YouTube", href: "https://www.youtube.com/@soccer365" },
-  { label: "Instagram", href: "https://www.instagram.com/soccer365" },
+  { label: "YouTube", href: "https://www.youtube.com/@soccer365-uk" },
 ];
