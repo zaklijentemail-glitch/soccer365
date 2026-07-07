@@ -5,22 +5,30 @@ import { GuideCard } from "@/components/ui/ArticleCard";
 import Hero from "@/components/home/Hero";
 import MatchCentreSection from "@/components/home/MatchCentreSection";
 import StandingsSection from "@/components/home/StandingsSection";
+import CategorySpotlight from "@/components/home/CategorySpotlight";
 import { COMPETITIONS } from "@/lib/football/config";
 import {
   buildMatchCentreFeed,
   getMatchCenterData,
 } from "@/lib/football/fixtures";
 import { getStandingsBundle } from "@/lib/football/standings";
-import { getFeaturedNews, getLatestNews, getFeaturedGuides } from "@/lib/data";
+import {
+  getFeaturedNews,
+  getLatestNews,
+  getFeaturedGuides,
+  getCategories,
+} from "@/lib/data";
 
 export default async function HomePage() {
-  const [featured, latest, guides, fixtures, standings] = await Promise.all([
-    getFeaturedNews(1),
-    getLatestNews(9),
-    getFeaturedGuides(6),
-    getMatchCenterData(),
-    getStandingsBundle(),
-  ]);
+  const [featured, latest, guides, fixtures, standings, categories] =
+    await Promise.all([
+      getFeaturedNews(1),
+      getLatestNews(9),
+      getFeaturedGuides(6),
+      getMatchCenterData(),
+      getStandingsBundle(),
+      getCategories(),
+    ]);
 
   const topStory = featured[0] ?? latest[0];
   const latestExcludingTop = latest
@@ -55,12 +63,15 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="mt-14">
+        <div className="mt-14">
           <MatchCentreSection feed={matchFeed} logos={leagueLogos} />
-        </section>
-        <section className="mt-14">
+        </div>
+        <div className="mt-14">
+          <CategorySpotlight categories={categories} />
+        </div>
+        <div className="mt-14">
           <StandingsSection standings={standings} />
-        </section>
+        </div>
 
         <section className="mt-14">
           <div className="flex items-baseline justify-between border-b border-line pb-3">
