@@ -11,7 +11,11 @@ export default function Footer() {
     <footer className="mt-16 bg-ink text-white">
       <Container className="flex flex-col items-center py-12 text-center">
         {/* Wordmark */}
-        <Link href="/" aria-label={`${SITE.name} home`} className="inline-flex items-center gap-2.5">
+        <Link
+          href="/"
+          aria-label={`${SITE.name} home`}
+          className="inline-flex items-center gap-2.5"
+        >
           <Image
             src="/images/logo-mark.png"
             alt=""
@@ -64,8 +68,9 @@ export default function Footer() {
 
         {/* Copyright / disclaimer */}
         <p className="mt-8 max-w-3xl text-xs leading-relaxed text-white/45">
-          &copy; {year} {SITE.name}. All rights reserved. The information contained in {SITE.name} may not be published,
-          broadcast, rewritten or redistributed without the prior written authority of {SITE.name}.
+          &copy; {year} {SITE.name}. All rights reserved. The information
+          contained in {SITE.name} may not be published, broadcast, rewritten or
+          redistributed without the prior written authority of {SITE.name}.
         </p>
       </Container>
     </footer>
