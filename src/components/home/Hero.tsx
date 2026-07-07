@@ -19,13 +19,13 @@ export default function Hero({ topStory }: { topStory: Article }) {
     <section className="relative overflow-hidden bg-ink">
       <div aria-hidden="true" className="absolute inset-0">
         <Image
-          src="/images/hero-bg.webp"
+          src="/images/hero-bg.jpg"
           alt=""
           fill
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/55" />
       </div>
 
       <Container className="relative py-10! lg:py-14!">

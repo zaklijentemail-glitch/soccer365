@@ -3,33 +3,48 @@ import Container from "@/components/ui/Container";
 import AdSlot from "@/components/ui/AdSlot";
 import { GuideCard } from "@/components/ui/ArticleCard";
 import Hero from "@/components/home/Hero";
+import MatchCentreSection from "@/components/home/MatchCentreSection";
+import StandingsSection from "@/components/home/StandingsSection";
+import { COMPETITIONS } from "@/lib/football/config";
+import {
+  buildMatchCentreFeed,
+  getMatchCenterData,
+} from "@/lib/football/fixtures";
+import { getStandingsBundle } from "@/lib/football/standings";
 import { getFeaturedNews, getLatestNews, getFeaturedGuides } from "@/lib/data";
 
 export default async function HomePage() {
-  const [featured, latest, guides] = await Promise.all([
+  const [featured, latest, guides, fixtures, standings] = await Promise.all([
     getFeaturedNews(1),
     getLatestNews(9),
     getFeaturedGuides(6),
+    getMatchCenterData(),
+    getStandingsBundle(),
   ]);
 
   const topStory = featured[0] ?? latest[0];
-  const latestExcludingTop = latest.filter((article) => article.id !== topStory?.id).slice(0, 8);
+  const latestExcludingTop = latest
+    .filter((article) => article.id !== topStory?.id)
+    .slice(0, 8);
+  const matchFeed = buildMatchCentreFeed(fixtures);
+  const leagueLogos = Object.fromEntries(
+    COMPETITIONS.map((c) => [c.slug, standings[c.slug]?.leagueLogo ?? null]),
+  );
 
   return (
     <>
       {topStory && <Hero topStory={topStory} />}
 
       <Container className="py-8">
-        <div className="my-10">
-          <AdSlot variant="leaderboard" />
-        </div>
-
         <section className="mt-4">
           <div className="flex items-baseline justify-between border-b border-line pb-3">
             <h2 className="font-display text-xl font-bold uppercase tracking-tight text-ink">
               Latest News
             </h2>
-            <Link href="/news" className="text-sm font-bold uppercase text-brand hover:text-brand-dark">
+            <Link
+              href="/news"
+              className="text-sm font-bold uppercase text-brand hover:text-brand-dark"
+            >
               All news →
             </Link>
           </div>
@@ -38,6 +53,13 @@ export default async function HomePage() {
               <GuideCard key={article.id} article={article} />
             ))}
           </div>
+        </section>
+
+        <section className="mt-14">
+          <MatchCentreSection feed={matchFeed} logos={leagueLogos} />
+        </section>
+        <section className="mt-14">
+          <StandingsSection standings={standings} />
         </section>
 
         <section className="mt-14">
@@ -50,7 +72,10 @@ export default async function HomePage() {
                 Featured Guides
               </h2>
             </div>
-            <Link href="/guides" className="text-sm font-bold uppercase text-brand hover:text-brand-dark">
+            <Link
+              href="/guides"
+              className="text-sm font-bold uppercase text-brand hover:text-brand-dark"
+            >
               All guides →
             </Link>
           </div>
