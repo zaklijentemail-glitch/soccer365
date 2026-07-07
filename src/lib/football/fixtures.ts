@@ -1,26 +1,28 @@
 import "server-only";
-import { fetchFootball } from "./client";
-import { MARQUEE_LEAGUES, TODAY_REVALIDATE_SECONDS, YESTERDAY_REVALIDATE_SECONDS, type CompetitionSlug } from "./config";
+import { fetchFootballData } from "./client";
+import { COMPETITIONS, MATCHES_REVALIDATE_SECONDS, type CompetitionSlug } from "./config";
 import { isFinishedStatus, isLiveStatus } from "./status";
 import type { MatchFixture } from "./types";
 
-interface RawFixture {
-  fixture: {
-    id: number;
-    date: string;
-    status: { short: string; elapsed: number | null };
-  };
-  league: { id: number; round: string };
-  teams: {
-    home: { name: string; logo: string };
-    away: { name: string; logo: string };
-  };
-  goals: { home: number | null; away: number | null };
+interface FdMatchTeam {
+  name: string;
+  shortName: string | null;
+  crest: string | null;
 }
 
-export interface MatchCenterData {
-  yesterday: MatchFixture[];
-  today: MatchFixture[];
+interface FdMatch {
+  id: number;
+  utcDate: string;
+  status: string;
+  stage: string;
+  competition: { code: string; name: string };
+  homeTeam: FdMatchTeam;
+  awayTeam: FdMatchTeam;
+  score: { fullTime: { home: number | null; away: number | null } };
+}
+
+interface FdMatchesResponse {
+  matches: FdMatch[];
 }
 
 export interface MatchCentreFeed {
@@ -31,7 +33,7 @@ export interface MatchCentreFeed {
 
 // Brand priority when several competitions have matches at once: Premier
 // League first as the anchor audience, World Cup last since it already gets
-// prominence from being the only thing on outside domestic season.
+// prominence elsewhere.
 const COMPETITION_PRIORITY: CompetitionSlug[] = ["premier-league", "champions-league", "la-liga", "world-cup"];
 
 function competitionRank(slug: CompetitionSlug): number {
@@ -39,16 +41,13 @@ function competitionRank(slug: CompetitionSlug): number {
 }
 
 /**
- * Early Champions League/Europa qualifying rounds pull in every UEFA
- * nation's domestic champion (Armenia, Latvia, Wales, San Marino, the Faroes
- * ...) regardless of profile — that's simply how qualifying works, and it's
- * the only Champions League football played in June/July. None of it is
- * clubs a mainstream UK/US audience follows, so it's excluded from the feed
- * entirely rather than merely labeled: once the real league phase kicks off
- * in September, those fixtures appear normally.
+ * Champions League qualifying rounds pull in every UEFA nation's domestic
+ * champion regardless of profile — none of it is clubs a mainstream audience
+ * follows, so those rounds are excluded. Once the league phase starts, its
+ * matches (stage GROUP_STAGE / PLAY_OFFS / knockouts) appear normally.
  */
-function isQualifyingRound(round: string): boolean {
-  return /qualifying|preliminary/i.test(round);
+function isQualifyingStage(stage: string): boolean {
+  return /QUALIF|PRELIMIN/i.test(stage);
 }
 
 function toDateParam(date: Date): string {
@@ -61,61 +60,83 @@ function addDays(date: Date, days: number): Date {
   return next;
 }
 
-async function fetchFixturesForDate(date: string, revalidateSeconds: number): Promise<MatchFixture[]> {
-  const leaguesById = new Map(MARQUEE_LEAGUES.map((league) => [league.id, league]));
-  const raw = await fetchFootball<RawFixture>(`/fixtures?date=${date}`, revalidateSeconds);
-
-  return raw
-    .filter((item) => leaguesById.has(item.league.id))
-    .map((item): MatchFixture => {
-      const league = leaguesById.get(item.league.id)!;
-      return {
-        id: item.fixture.id,
-        leagueId: league.id,
-        leagueName: league.name,
-        competition: league.competition,
-        round: item.league.round,
-        kickoff: item.fixture.date,
-        statusShort: item.fixture.status.short,
-        elapsedMinutes: item.fixture.status.elapsed,
-        homeTeam: item.teams.home.name,
-        homeLogo: item.teams.home.logo,
-        homeGoals: item.goals.home,
-        awayTeam: item.teams.away.name,
-        awayLogo: item.teams.away.logo,
-        awayGoals: item.goals.away,
-      };
-    })
-    .sort((a, b) => new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime());
+function mapMatch(item: FdMatch, slug: CompetitionSlug, leagueName: string): MatchFixture {
+  return {
+    id: item.id,
+    competition: slug,
+    leagueName,
+    stage: item.stage,
+    kickoff: item.utcDate,
+    status: item.status,
+    homeTeam: item.homeTeam.shortName ?? item.homeTeam.name,
+    homeCrest: item.homeTeam.crest,
+    homeGoals: item.score.fullTime.home,
+    awayTeam: item.awayTeam.shortName ?? item.awayTeam.name,
+    awayCrest: item.awayTeam.crest,
+    awayGoals: item.score.fullTime.away,
+  };
 }
 
-export async function getMatchCenterData(): Promise<MatchCenterData> {
-  const now = new Date();
+async function fetchCompetitionMatches(
+  code: string,
+  slug: CompetitionSlug,
+  leagueName: string,
+  dateFrom: string,
+  dateTo: string
+): Promise<MatchFixture[]> {
+  const data = await fetchFootballData<FdMatchesResponse>(
+    `/competitions/${code}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`,
+    MATCHES_REVALIDATE_SECONDS
+  );
+  if (!data) return [];
 
-  const [yesterday, today] = await Promise.all([
-    fetchFixturesForDate(toDateParam(addDays(now, -1)), YESTERDAY_REVALIDATE_SECONDS),
-    fetchFixturesForDate(toDateParam(now), TODAY_REVALIDATE_SECONDS),
-  ]);
-
-  return { yesterday, today };
+  return data.matches
+    .filter((item) => !isQualifyingStage(item.stage))
+    .map((item) => mapMatch(item, slug, leagueName));
 }
 
 /**
- * Classifies today's + yesterday's fixtures (across all tracked competitions)
- * into the three groups the Match Centre shows. Returns the full sets,
- * unsliced — the client-side competition filter decides what's actually
- * relevant before anything gets capped for display.
+ * Fetches every tracked competition's matches for yesterday → tomorrow.
+ *
+ * Each competition is fetched on its own endpoint rather than through the
+ * combined `/matches?competitions=` query: that combined endpoint silently
+ * drops later fixtures of a day (e.g. it returned only 3 of 5 World Cup
+ * matches, omitting the evening kickoffs), whereas the per-competition
+ * endpoint is complete. The window spans one day either side of today so
+ * matches that fall on a different UTC calendar day than the viewer's local
+ * day are still included; the client filters to the local day for display.
  */
-export function buildMatchCentreFeed(data: MatchCenterData): MatchCentreFeed {
-  const relevantToday = data.today.filter((match) => !isQualifyingRound(match.round));
-  const relevantYesterday = data.yesterday.filter((match) => !isQualifyingRound(match.round));
+export async function getMatchCentreMatches(): Promise<MatchFixture[]> {
+  const now = new Date();
+  const dateFrom = toDateParam(addDays(now, -1));
+  const dateTo = toDateParam(addDays(now, 1));
 
-  const live = relevantToday.filter((match) => isLiveStatus(match.statusShort));
-  const todaysFixtures = relevantToday.filter(
-    (match) => !isLiveStatus(match.statusShort) && !isFinishedStatus(match.statusShort)
+  const perCompetition = await Promise.all(
+    COMPETITIONS.map((c) => fetchCompetitionMatches(c.code, c.slug, c.label, dateFrom, dateTo))
   );
-  const finishedToday = relevantToday.filter((match) => isFinishedStatus(match.statusShort));
-  const results = [...finishedToday, ...relevantYesterday];
+  return perCompetition.flat();
+}
+
+/**
+ * Classifies yesterday's + today's matches into the three groups the Match
+ * Centre shows. Returns full sets, unsliced — the client-side competition
+ * filter decides what's relevant before anything gets capped for display.
+ */
+export function buildMatchCentreFeed(matches: MatchFixture[]): MatchCentreFeed {
+  // The fetch window spans a day either side of today (see getMatchCentreMatches),
+  // so bound upcoming fixtures to the next ~30 hours: that reliably covers the
+  // rest of today and tonight's late kickoffs without spilling tomorrow's full
+  // card into the "today" column.
+  const upcomingHorizon = Date.now() + 30 * 60 * 60 * 1000;
+
+  const live = matches.filter((m) => isLiveStatus(m.status));
+  const todaysFixtures = matches.filter(
+    (m) =>
+      !isLiveStatus(m.status) &&
+      !isFinishedStatus(m.status) &&
+      new Date(m.kickoff).getTime() <= upcomingHorizon
+  );
+  const results = matches.filter((m) => isFinishedStatus(m.status));
 
   const byPriorityThenTimeAsc = (a: MatchFixture, b: MatchFixture) => {
     const rankDiff = competitionRank(a.competition) - competitionRank(b.competition);

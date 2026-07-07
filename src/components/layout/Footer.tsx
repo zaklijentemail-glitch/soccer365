@@ -1,69 +1,73 @@
+import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-import Logo from "./Logo";
-import { FOOTER_LINKS, SOCIAL_LINKS } from "@/lib/constants";
+import SocialIcon from "./SocialIcon";
+import { FOOTER_INLINE_LINKS, SITE, SOCIAL_LINKS } from "@/lib/constants";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="mt-16 border-t border-line bg-paper-soft">
-      <Container className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <Logo />
-          <p className="mt-3 max-w-xs text-sm text-ink-soft">
-            The latest football news, transfers and analysis. Fast, clear, no filler.
-          </p>
-        </div>
+    <footer className="mt-16 bg-ink text-white">
+      <Container className="flex flex-col items-center py-12 text-center">
+        {/* Wordmark */}
+        <Link href="/" aria-label={`${SITE.name} home`} className="inline-flex items-center gap-2.5">
+          <Image
+            src="/images/logo-mark.png"
+            alt=""
+            width={44}
+            height={44}
+            className="h-10 w-10 shrink-0"
+          />
+          <span className="font-display text-2xl font-bold uppercase tracking-tight text-white">
+            Soccer <span className="text-brand-light">365</span>
+          </span>
+        </Link>
 
-        <div>
-          <h3 className="text-sm font-bold uppercase tracking-wide text-ink">Content</h3>
-          <ul className="mt-3 space-y-2">
-            {FOOTER_LINKS.content.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="text-sm text-ink-soft hover:text-brand">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Social row */}
+        <ul className="mt-6 flex items-center gap-3">
+          {SOCIAL_LINKS.map((social) => (
+            <li key={social.platform}>
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-brand hover:text-white"
+              >
+                <SocialIcon platform={social.platform} />
+              </a>
+            </li>
+          ))}
+        </ul>
 
-        <div>
-          <h3 className="text-sm font-bold uppercase tracking-wide text-ink">Information</h3>
-          <ul className="mt-3 space-y-2">
-            {FOOTER_LINKS.info.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="text-sm text-ink-soft hover:text-brand">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-sm font-bold uppercase tracking-wide text-ink">Follow Us</h3>
-          <ul className="mt-3 space-y-2">
-            {SOCIAL_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
+        {/* Inline link row with dividers */}
+        <nav aria-label="Footer" className="mt-8 max-w-3xl">
+          <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+            {FOOTER_INLINE_LINKS.map((link, i) => (
+              <li key={link.href} className="flex items-center gap-x-3">
+                {i > 0 && (
+                  <span aria-hidden className="text-white/25">
+                    |
+                  </span>
+                )}
+                <Link
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-ink-soft hover:text-brand"
+                  className="text-sm font-semibold text-white/80 transition-colors hover:text-brand-light"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-        </div>
-      </Container>
+        </nav>
 
-      <div className="border-t border-line">
-        <Container className="flex flex-col items-center justify-between gap-2 py-5 text-sm text-ink-faint sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Soccer 365. All rights reserved.</p>
-        </Container>
-      </div>
+        {/* Copyright / disclaimer */}
+        <p className="mt-8 max-w-3xl text-xs leading-relaxed text-white/45">
+          &copy; {year} {SITE.name}. All rights reserved. The information contained in {SITE.name} may not be published,
+          broadcast, rewritten or redistributed without the prior written authority of {SITE.name}.
+        </p>
+      </Container>
     </footer>
   );
 }

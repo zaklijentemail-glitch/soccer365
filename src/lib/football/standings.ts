@@ -1,99 +1,89 @@
 import "server-only";
-import { fetchFootball } from "./client";
-import {
-  STANDINGS_FALLBACK_SEASONS,
-  STANDINGS_LEAGUE_IDS,
-  STANDINGS_REVALIDATE_SECONDS,
-  type CompetitionSlug,
-} from "./config";
-import type { StandingGroup, StandingRow, StandingsResult } from "./types";
+import { fetchFootballData } from "./client";
+import { COMPETITIONS, STANDINGS_REVALIDATE_SECONDS, type CompetitionSlug } from "./config";
+import type { StandingGroup, StandingsResult } from "./types";
 
-interface RawStandingRow {
-  rank: number;
-  team: { name: string; logo: string };
-  points: number;
-  goalsDiff: number;
-  group: string;
+interface FdTeam {
+  name: string;
+  shortName: string | null;
+  crest: string | null;
+}
+
+interface FdTableRow {
+  position: number;
+  team: FdTeam;
+  playedGames: number;
   form: string | null;
-  all: { played: number };
+  points: number;
+  goalDifference: number;
 }
 
-interface RawStandingsResponse {
-  league: { logo: string; standings: RawStandingRow[][] };
+interface FdStanding {
+  stage: string;
+  type: string;
+  group: string | null;
+  table: FdTableRow[];
 }
 
-function domesticSeasonFor(date = new Date()): number {
-  const year = date.getUTCFullYear();
-  const month = date.getUTCMonth() + 1;
-  // European domestic seasons start in August and are named for their starting year.
-  return month >= 8 ? year : year - 1;
+interface FdStandingsResponse {
+  competition: { emblem: string | null };
+  season: { startDate: string };
+  standings: FdStanding[];
 }
 
-function mapRows(raw: RawStandingRow[]): StandingRow[] {
-  return raw.map((row) => ({
-    rank: row.rank,
-    team: row.team.name,
-    logo: row.team.logo,
-    played: row.all.played,
-    points: row.points,
-    form: row.form ?? "",
-    goalsDiff: row.goalsDiff,
-  }));
+// The football-data.org form string uses commas ("W,W,L,D"); the UI expects a
+// bare letter sequence ("WWLD"), most recent last.
+function normaliseForm(form: string | null): string {
+  return form ? form.replace(/[^WDL]/g, "") : "";
 }
 
-function toGroups(raw: RawStandingRow[][]): StandingGroup[] {
-  return raw.map((group) => ({
-    name: group[0]?.group ?? "Table",
-    rows: mapRows(group),
-  }));
+function mapGroup(standing: FdStanding): StandingGroup {
+  return {
+    name: standing.group ?? "Table",
+    rows: standing.table.map((row) => ({
+      rank: row.position,
+      team: row.team.shortName ?? row.team.name,
+      crest: row.team.crest,
+      played: row.playedGames,
+      points: row.points,
+      form: normaliseForm(row.form),
+      goalsDiff: row.goalDifference,
+    })),
+  };
 }
 
-async function fetchStandingsForSeason(
-  leagueId: number,
-  season: number
-): Promise<{ standings: RawStandingRow[][]; logo: string } | null> {
-  const raw = await fetchFootball<RawStandingsResponse>(
-    `/standings?league=${leagueId}&season=${season}`,
+async function getStandingsForCompetition(code: string): Promise<StandingsResult | null> {
+  const data = await fetchFootballData<FdStandingsResponse>(
+    `/competitions/${code}/standings`,
     STANDINGS_REVALIDATE_SECONDS
   );
-  const league = raw[0]?.league;
-  const standings = league?.standings;
-  if (!standings || standings.length === 0 || !standings[0]?.length) return null;
-  return { standings, logo: league.logo };
-}
 
-async function getStandingsForLeague(leagueId: number, preferredSeason: number): Promise<StandingsResult | null> {
-  const seasonsToTry = [preferredSeason, ...STANDINGS_FALLBACK_SEASONS.filter((s) => s !== preferredSeason)];
+  // Only the aggregate "TOTAL" tables are shown (not home/away splits).
+  const totals = data?.standings.filter((s) => s.type === "TOTAL") ?? [];
+  if (!data || totals.length === 0 || !totals[0]?.table.length) return null;
 
-  for (const season of seasonsToTry) {
-    const result = await fetchStandingsForSeason(leagueId, season);
-    if (result) {
-      return {
-        season,
-        isFallback: season !== preferredSeason,
-        leagueLogo: result.logo,
-        groups: toGroups(result.standings),
-      };
-    }
-  }
-  return null;
+  return {
+    season: new Date(data.season.startDate).getUTCFullYear(),
+    leagueLogo: data.competition.emblem,
+    groups: totals.map(mapGroup),
+  };
 }
 
 export async function getStandingsBundle(): Promise<Record<CompetitionSlug, StandingsResult | null>> {
-  const domesticSeason = domesticSeasonFor();
-  const worldCupSeason = new Date().getUTCFullYear();
+  // World Cup is handled separately as a knockout bracket (see worldcup.ts),
+  // so only the three table-based competitions are fetched here.
+  const tableComps = COMPETITIONS.filter((c) => c.slug !== "world-cup");
 
-  const [premierLeague, championsLeague, laLiga, worldCup] = await Promise.all([
-    getStandingsForLeague(STANDINGS_LEAGUE_IDS["premier-league"], domesticSeason),
-    getStandingsForLeague(STANDINGS_LEAGUE_IDS["champions-league"], domesticSeason),
-    getStandingsForLeague(STANDINGS_LEAGUE_IDS["la-liga"], domesticSeason),
-    getStandingsForLeague(STANDINGS_LEAGUE_IDS["world-cup"], worldCupSeason),
-  ]);
+  const results = await Promise.all(tableComps.map((c) => getStandingsForCompetition(c.code)));
 
-  return {
-    "premier-league": premierLeague,
-    "champions-league": championsLeague,
-    "la-liga": laLiga,
-    "world-cup": worldCup,
+  const bundle: Record<CompetitionSlug, StandingsResult | null> = {
+    "premier-league": null,
+    "champions-league": null,
+    "la-liga": null,
+    "world-cup": null,
   };
+  tableComps.forEach((c, i) => {
+    bundle[c.slug] = results[i];
+  });
+  return bundle;
 }

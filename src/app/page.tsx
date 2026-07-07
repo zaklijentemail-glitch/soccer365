@@ -9,9 +9,10 @@ import CategorySpotlight from "@/components/home/CategorySpotlight";
 import { COMPETITIONS } from "@/lib/football/config";
 import {
   buildMatchCentreFeed,
-  getMatchCenterData,
+  getMatchCentreMatches,
 } from "@/lib/football/fixtures";
 import { getStandingsBundle } from "@/lib/football/standings";
+import { getWorldCupKnockout } from "@/lib/football/worldcup";
 import {
   getFeaturedNews,
   getLatestNews,
@@ -20,13 +21,14 @@ import {
 } from "@/lib/data";
 
 export default async function HomePage() {
-  const [featured, latest, guides, fixtures, standings, categories] =
+  const [featured, latest, guides, matches, standings, worldCup, categories] =
     await Promise.all([
       getFeaturedNews(1),
       getLatestNews(13),
       getFeaturedGuides(6),
-      getMatchCenterData(),
+      getMatchCentreMatches(),
       getStandingsBundle(),
+      getWorldCupKnockout(),
       getCategories(),
     ]);
 
@@ -36,9 +38,12 @@ export default async function HomePage() {
   const latestSidebar = rest.slice(2, 6);
   const gridMore = rest.slice(6, 12);
 
-  const matchFeed = buildMatchCentreFeed(fixtures);
+  const matchFeed = buildMatchCentreFeed(matches);
   const leagueLogos = Object.fromEntries(
-    COMPETITIONS.map((c) => [c.slug, standings[c.slug]?.leagueLogo ?? null]),
+    COMPETITIONS.map((c) => [
+      c.slug,
+      (c.slug === "world-cup" ? worldCup?.leagueLogo : standings[c.slug]?.leagueLogo) ?? null,
+    ]),
   );
 
   return (
@@ -61,7 +66,7 @@ export default async function HomePage() {
       </div>
 
       <div className="mt-14">
-        <StandingsSection standings={standings} />
+        <StandingsSection standings={standings} worldCup={worldCup} />
       </div>
 
       <section className="mt-14">
