@@ -28,25 +28,23 @@ export const NAV_LINKS = [
   { label: "World Cup", href: "/category/world-cup" },
 ];
 
-export const FOOTER_LINKS = {
-  content: [
-    { label: "News", href: "/news" },
-    { label: "Guides", href: "/guides" },
-    { label: "Transfers", href: "/category/transfers" },
-    { label: "Champions League", href: "/category/champions-league" },
-    { label: "World Cup", href: "/category/world-cup" },
-  ],
-  info: [
-    { label: "About Us", href: "/about" },
-    { label: "Contact", href: "/contact" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms" },
-    { label: "Disclaimer", href: "/disclaimer" },
-    { label: "DMCA", href: "/dmca" },
-  ],
-};
+export type SocialPlatform = "facebook" | "x" | "instagram" | "youtube";
 
-export const SOCIAL_LINKS = [
-  { label: "Facebook", href: "https://www.facebook.com/news.soccer365" },
-  { label: "YouTube", href: "https://www.youtube.com/@soccer365-uk" },
+export const SOCIAL_LINKS: { label: string; href: string; platform: SocialPlatform }[] = [
+  { label: "Facebook", href: "https://www.facebook.com/news.soccer365", platform: "facebook" },
+  { label: "YouTube", href: "https://www.youtube.com/@soccer365-uk", platform: "youtube" },
+];
+
+/** Single inline row of footer links, goal.com-style, pipe-separated. */
+export const FOOTER_INLINE_LINKS = [
+  { label: "News", href: "/news" },
+  { label: "Guides", href: "/guides" },
+  { label: "Transfers", href: "/category/transfers" },
+  { label: "Champions League", href: "/category/champions-league" },
+  { label: "World Cup", href: "/category/world-cup" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms", href: "/terms" },
+  { label: "DMCA", href: "/dmca" },
 ];

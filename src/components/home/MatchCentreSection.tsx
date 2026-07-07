@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import CompetitionSwitcher, { type CompetitionOption } from "./CompetitionSwitcher";
+import TeamCrest from "@/components/football/TeamCrest";
 import { COMPETITIONS, type CompetitionSlug } from "@/lib/football/config";
 import type { MatchCentreFeed } from "@/lib/football/fixtures";
 import { isFinishedStatus, isLiveStatus } from "@/lib/football/status";
@@ -29,14 +30,9 @@ function formatDay(iso: string): string {
   return new Date(iso).toLocaleDateString([], { weekday: "short", day: "numeric", month: "short" });
 }
 
-function Crest({ src }: { src: string }) {
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={src} alt="" width={16} height={16} className="shrink-0 object-contain" />;
-}
-
 function MatchRow({ match, showCompetition }: { match: MatchFixture; showCompetition: boolean }) {
-  const live = isLiveStatus(match.statusShort);
-  const finished = isFinishedStatus(match.statusShort);
+  const live = isLiveStatus(match.status);
+  const finished = isFinishedStatus(match.status);
   const scoreKnown = match.homeGoals !== null && match.awayGoals !== null;
 
   return (
@@ -52,7 +48,7 @@ function MatchRow({ match, showCompetition }: { match: MatchFixture; showCompeti
               aria-hidden
               className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent motion-reduce:animate-none"
             />
-            {match.elapsedMinutes ?? ""}&apos;
+            LIVE
           </span>
         ) : finished ? (
           <span className="text-xs font-bold text-ink-faint">FT</span>
@@ -73,11 +69,11 @@ function MatchRow({ match, showCompetition }: { match: MatchFixture; showCompeti
           </div>
         )}
         <div className={`flex items-center gap-2 text-sm font-bold text-ink ${showCompetition ? "mt-1" : ""}`}>
-          <Crest src={match.homeLogo} />
+          <TeamCrest src={match.homeCrest} name={match.homeTeam} />
           <span className="truncate">{match.homeTeam}</span>
         </div>
         <div className="mt-1 flex items-center gap-2 text-sm font-bold text-ink">
-          <Crest src={match.awayLogo} />
+          <TeamCrest src={match.awayCrest} name={match.awayTeam} />
           <span className="truncate">{match.awayTeam}</span>
         </div>
       </div>

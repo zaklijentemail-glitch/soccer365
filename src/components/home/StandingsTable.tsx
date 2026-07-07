@@ -1,5 +1,6 @@
 "use client";
 
+import TeamCrest from "@/components/football/TeamCrest";
 import { MAX_STANDINGS_GROUPS_DISPLAYED } from "@/lib/football/config";
 import type { StandingGroup, StandingRow, StandingsResult } from "@/lib/football/types";
 
@@ -51,7 +52,12 @@ function GroupTable({ group }: { group: StandingGroup }) {
         {group.rows.map((row: StandingRow) => (
           <tr key={`${group.name}-${row.rank}-${row.team}`} className="border-b border-line last:border-0">
             <td className="py-1.5 pr-2 font-bold tabular-nums text-ink">{row.rank}</td>
-            <td className="py-1.5 pr-2 font-medium text-ink">{row.team}</td>
+            <td className="py-1.5 pr-2 font-medium text-ink">
+              <span className="flex items-center gap-2">
+                <TeamCrest src={row.crest} name={row.team} size={18} />
+                <span className="truncate">{row.team}</span>
+              </span>
+            </td>
             <td className="hidden py-1.5 pr-2 text-center tabular-nums text-ink-soft sm:table-cell">{row.played}</td>
             <td className="py-1.5 pr-2 text-center font-bold tabular-nums text-ink">{row.points}</td>
             <td className="py-1.5">

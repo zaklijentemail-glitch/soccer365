@@ -1,5 +1,6 @@
-const LIVE_STATUSES = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
-const FINISHED_STATUSES = new Set(["FT", "AET", "PEN", "AWD", "WO"]);
+// football-data.org match status values.
+const LIVE_STATUSES = new Set(["LIVE", "IN_PLAY", "PAUSED"]);
+const FINISHED_STATUSES = new Set(["FINISHED", "AWARDED"]);
 
 export function isLiveStatus(status: string): boolean {
   return LIVE_STATUSES.has(status);

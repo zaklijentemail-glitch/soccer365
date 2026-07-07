@@ -1,27 +1,25 @@
 import "server-only";
 
-const BASE_URL = "https://v3.football.api-sports.io";
+const BASE_URL = "https://api.football-data.org/v4";
 
 /**
- * Thin fetch wrapper for API-Football. Fails soft everywhere: a missing key,
- * network error, non-OK response, or a plan-restriction error all resolve to
- * an empty array rather than throwing, so a quota hiccup never breaks the
+ * Thin fetch wrapper for football-data.org. Fails soft everywhere: a missing
+ * token, network error, non-OK response, or a plan-restriction error all
+ * resolve to `null` rather than throwing, so a quota hiccup never breaks the
  * homepage — the affected section just renders its empty state.
  */
-export async function fetchFootball<T>(path: string, revalidateSeconds: number): Promise<T[]> {
-  const apiKey = process.env.API_FOOTBALL_KEY;
-  if (!apiKey) return [];
+export async function fetchFootballData<T>(path: string, revalidateSeconds: number): Promise<T | null> {
+  const token = process.env.FOOTBALL_DATA_TOKEN;
+  if (!token) return null;
 
   try {
     const res = await fetch(`${BASE_URL}${path}`, {
-      headers: { "x-apisports-key": apiKey },
+      headers: { "X-Auth-Token": token },
       next: { revalidate: revalidateSeconds },
     });
-    if (!res.ok) return [];
-
-    const json = await res.json();
-    return Array.isArray(json?.response) ? (json.response as T[]) : [];
+    if (!res.ok) return null;
+    return (await res.json()) as T;
   } catch {
-    return [];
+    return null;
   }
 }
