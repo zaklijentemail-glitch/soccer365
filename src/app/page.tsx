@@ -3,14 +3,13 @@ import Container from "@/components/ui/Container";
 import AdSlot from "@/components/ui/AdSlot";
 import { GuideCard } from "@/components/ui/ArticleCard";
 import Hero from "@/components/home/Hero";
-import { getFeaturedNews, getLatestNews, getFeaturedGuides, getCategories } from "@/lib/data";
+import { getFeaturedNews, getLatestNews, getFeaturedGuides } from "@/lib/data";
 
 export default async function HomePage() {
-  const [featured, latest, guides, categories] = await Promise.all([
+  const [featured, latest, guides] = await Promise.all([
     getFeaturedNews(1),
     getLatestNews(9),
     getFeaturedGuides(6),
-    getCategories(),
   ]);
 
   const topStory = featured[0] ?? latest[0];
@@ -18,7 +17,7 @@ export default async function HomePage() {
 
   return (
     <>
-      {topStory && <Hero topStory={topStory} categories={categories} />}
+      {topStory && <Hero topStory={topStory} />}
 
       <Container className="py-8">
         <div className="my-10">
