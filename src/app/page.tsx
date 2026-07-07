@@ -66,13 +66,6 @@ export default async function HomePage() {
         <div className="mt-14">
           <MatchCentreSection feed={matchFeed} logos={leagueLogos} />
         </div>
-        <div className="mt-14">
-          <CategorySpotlight categories={categories} />
-        </div>
-        <div className="mt-14">
-          <StandingsSection standings={standings} />
-        </div>
-
         <section className="mt-14">
           <div className="flex items-baseline justify-between border-b border-line pb-3">
             <div>
@@ -97,8 +90,11 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <div className="my-14">
-          <AdSlot variant="rectangle" className="mx-auto max-w-md" />
+        <div className="mt-14">
+          <StandingsSection standings={standings} />
+        </div>
+        <div className="mt-14">
+          <CategorySpotlight categories={categories} />
         </div>
       </Container>
     </>
