@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Article } from "@/lib/data/types";
 import { formatDate } from "@/lib/utils";
 
-function articleHref(article: Article) {
+export function articleHref(article: Article) {
   return article.type === "news" ? `/news/${article.slug}` : `/guides/${article.slug}`;
 }
 
