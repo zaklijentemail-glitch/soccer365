@@ -8,8 +8,8 @@ export const ADS_ENABLED = false;
 export const SITE = {
   name: "Soccer 365",
   shortName: "Soccer 365",
-  domain: "soccer365.com",
-  url: "https://www.soccer365.com",
+  domain: "soccer365.news",
+  url: "https://www.soccer365.news",
   description:
     "Soccer 365 brings you the latest football news, transfers, Champions League and World Cup coverage. Fast, clear, no filler.",
   locale: "en_GB",
