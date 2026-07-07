@@ -63,6 +63,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "NWPw-C63sAYRuRbzrnuoUo5wx0Vqep5KxXYkHHW5E6Q",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
