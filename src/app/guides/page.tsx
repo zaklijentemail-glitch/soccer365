@@ -6,7 +6,7 @@ import { getGuides } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Football Guides",
   description:
-    "Plain-English explainers on the rules, formats and quirks of football — offside, VAR, transfers and more.",
+    "Plain-English explainers on the rules, formats and quirks of football, including offside, VAR and transfers.",
   alternates: { canonical: "/guides" },
 };
 

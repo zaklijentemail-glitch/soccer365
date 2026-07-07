@@ -91,7 +91,7 @@ export default function ArticleListing({
       )}
 
       {result.items.length === 0 ? (
-        <p className="mt-10 text-ink-soft">No articles found yet — check back soon.</p>
+        <p className="mt-10 text-ink-soft">No articles found yet. Check back soon.</p>
       ) : (
         <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {result.items.map((article) => (

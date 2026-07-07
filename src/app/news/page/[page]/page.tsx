@@ -12,7 +12,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { page } = await params;
   return {
-    title: `Football News — Page ${page}`,
+    title: `Football News: Page ${page}`,
     alternates: { canonical: `/news/page/${page}` },
   };
 }

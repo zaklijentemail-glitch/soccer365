@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
       <h2>Cookies</h2>
       <p>
         We use cookies and similar technologies to operate the site, remember your preferences,
-        and — where you have given consent — to serve personalised advertising and measure site
+        and, where you have given consent, to serve personalised advertising and measure site
         performance. You can control or disable cookies through your browser settings, though
         some site features may not work correctly without them. Where required by law, we will
         request your consent before setting non-essential cookies via a cookie-consent banner.

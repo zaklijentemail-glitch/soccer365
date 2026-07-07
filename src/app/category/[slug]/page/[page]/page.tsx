@@ -14,7 +14,7 @@ export async function generateMetadata({
   const category = await getCategoryBySlugAsync(slug);
   if (!category) return {};
   return {
-    title: `${category.name} — Page ${page}`,
+    title: `${category.name}: Page ${page}`,
     alternates: { canonical: `/category/${category.slug}/page/${page}` },
   };
 }

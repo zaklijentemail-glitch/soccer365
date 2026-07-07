@@ -13,7 +13,7 @@ export async function generateMetadata({
   const tag = await getTagBySlug(slug);
   if (!tag) return {};
   return {
-    title: `${tag.name} News & Articles — Page ${page}`,
+    title: `${tag.name} News & Articles: Page ${page}`,
     alternates: { canonical: `/tag/${tag.slug}/page/${page}` },
   };
 }

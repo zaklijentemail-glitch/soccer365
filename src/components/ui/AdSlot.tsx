@@ -30,7 +30,7 @@ export default function AdSlot({
       <div
         className={`w-full ${SIZES[variant]} flex items-center justify-center rounded-md border border-dashed border-line bg-paper-soft text-xs text-ink-faint`}
       >
-        Ad slot — {variant}
+        Ad slot ({variant})
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 /**
  * Flip to true once the AdSense account/publisher ID is approved and live.
- * Ad slot components/placements stay in the codebase either way — this only
+ * Ad slot components/placements stay in the codebase either way; this only
  * controls whether they render.
  */
 export const ADS_ENABLED = false;

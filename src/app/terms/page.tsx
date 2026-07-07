@@ -31,7 +31,7 @@ export default function TermsPage() {
 
       <h2>Intellectual Property</h2>
       <p>
-        All content on the Site — including articles, graphics, logos and page layout — is the
+        All content on the Site, including articles, graphics, logos and page layout, is the
         property of {SITE.name}{" "}or its licensors, and is protected by applicable copyright and
         trademark law, unless otherwise credited.
       </p>

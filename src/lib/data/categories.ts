@@ -39,7 +39,7 @@ export const CATEGORIES: Category[] = [
       "Clear explainers on the laws of football, competition formats and the rules casual fans always ask about.",
     meta_title: "Football Rules Explained: Guides | Soccer 365",
     meta_description:
-      "Offside, VAR, the Bosman ruling and more — football's rules and formats explained in plain English.",
+      "Offside, VAR, the Bosman ruling and more: football's rules and formats explained in plain English.",
   },
 ];
 

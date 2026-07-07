@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   }
 
   // Delivery hook: wire this up to a transactional email provider (e.g. Resend,
-  // Postmark, SMTP) before launch — currently the submission is accepted but not sent anywhere.
+  // Postmark, SMTP) before launch. Currently the submission is accepted but not sent anywhere.
   console.log("Contact form submission:", {
     name: body.name,
     email: body.email,

@@ -66,7 +66,7 @@ async function readAllOfType(type: ContentType): Promise<RawContentEntry[]> {
   for (const entry of entries) {
     if (slugs.has(entry.slug)) {
       throw new Error(
-        `Duplicate slug "${entry.slug}" found in content/${type}s — slugs must be unique per content type.`
+        `Duplicate slug "${entry.slug}" found in content/${type}s. Slugs must be unique per content type.`
       );
     }
     slugs.add(entry.slug);

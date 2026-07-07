@@ -36,7 +36,7 @@ export default function Hero({ topStory }: { topStory: Article }) {
             </h1>
 
             <p className="mt-3 max-w-md text-sm text-white/70 sm:text-base">
-              Fast, clear reporting and in-depth guides to the game — transfers,
+              Fast, clear reporting and in-depth guides to the game: transfers,
               Champions League nights and World Cup drama, without the filler.
             </p>
 

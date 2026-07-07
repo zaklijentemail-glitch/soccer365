@@ -41,7 +41,7 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <p className="rounded-md bg-brand-light px-4 py-3 text-brand-dark">
-        Thanks for reaching out — we&apos;ve received your message and will get back to you soon.
+        Thanks for reaching out. We&apos;ve received your message and will get back to you soon.
       </p>
     );
   }

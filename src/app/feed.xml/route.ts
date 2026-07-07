@@ -26,7 +26,7 @@ export async function GET() {
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>${SITE.name} — Football News</title>
+    <title>${SITE.name}: Football News</title>
     <link>${SITE.url}</link>
     <description>${escapeXml(SITE.description)}</description>
     <language>${SITE.language}</language>

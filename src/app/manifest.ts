@@ -3,7 +3,7 @@ import { SITE } from "@/lib/constants";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${SITE.name} — Football News, Transfers & Analysis`,
+    name: `${SITE.name}: Football News, Transfers & Analysis`,
     short_name: SITE.shortName,
     description: SITE.description,
     start_url: "/",

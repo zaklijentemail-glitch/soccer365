@@ -30,7 +30,7 @@ export default function AboutPage() {
       <h2>What We Cover</h2>
       <p>
         Breaking transfer news, match reports, Champions League and World Cup coverage, and a
-        growing library of explainer guides on the laws of the game and how competitions work —
+        growing library of explainer guides on the laws of the game and how competitions work,
         useful whether you&apos;ve followed football for decades or are just getting into it.
       </p>
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
 
       <h2>Get In Touch</h2>
       <p>
-        Questions, tips or feedback? Visit our <a href="/contact">Contact page</a> — we read
+        Questions, tips or feedback? Visit our <a href="/contact">Contact page</a>. We read
         every message.
       </p>
     </LegalPage>

@@ -21,7 +21,7 @@ export async function generateMetadata({
   const author = await getAuthorBySlug(slug);
   if (!author) return {};
   return {
-    title: `${author.name} — Author Profile`,
+    title: `${author.name}: Author Profile`,
     description: author.bio ?? `Articles by ${author.name} on ${SITE.name}.`,
     alternates: { canonical: `/author/${author.slug}` },
   };

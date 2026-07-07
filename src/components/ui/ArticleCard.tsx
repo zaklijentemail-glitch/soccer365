@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Article } from "@/lib/data/types";
-import { formatRelativeOrDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 function articleHref(article: Article) {
   return article.type === "news" ? `/news/${article.slug}` : `/guides/${article.slug}`;
@@ -26,7 +26,7 @@ export function CompactCard({ article }: { article: Article }) {
           </Link>
         </h4>
         <time className="mt-1 block text-xs text-ink-faint" dateTime={article.published_at}>
-          {formatRelativeOrDate(article.published_at)}
+          {formatDate(article.published_at)}
         </time>
       </div>
     </article>
@@ -57,7 +57,7 @@ export function GuideCard({ article }: { article: Article }) {
           </Link>
         </h3>
         <time className="mt-2 block text-sm text-ink-faint" dateTime={article.published_at}>
-          {formatRelativeOrDate(article.published_at)}
+          {formatDate(article.published_at)}
         </time>
       </div>
     </article>
