@@ -41,12 +41,13 @@ export default function Hero({ topStory }: { topStory: Article }) {
               Champions League nights and World Cup drama, without the filler.
             </p>
 
-            <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3 hidden">
               <Link
+                title="Explore News"
                 href="/news"
                 className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-brand-dark"
               >
-                Latest News →
+                Explore News →
               </Link>
               <Link
                 href="/guides"
