@@ -19,10 +19,9 @@ export default function Hero({ topStory }: { topStory: Article }) {
     <section className="relative overflow-hidden bg-ink">
       <div aria-hidden="true" className="absolute inset-0">
         <Image
-          src="/images/hero-bg.jpg"
+          src="/images/hero-bg.webp"
           alt=""
           fill
-          priority
           sizes="100vw"
           className="object-cover"
         />

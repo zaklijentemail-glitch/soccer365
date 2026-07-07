@@ -126,6 +126,31 @@ export async function getNewsByTag(
   return paginate(items, page, limit);
 }
 
+export async function getAllAuthors() {
+  const entries = await getAllEntries();
+  const map = new Map<string, ReturnType<typeof toArticle>["author"]>();
+  for (const entry of entries) {
+    const author = toArticle(entry).author;
+    map.set(author.slug, author);
+  }
+  return Array.from(map.values());
+}
+
+export async function getAuthorBySlug(slug: string) {
+  const authors = await getAllAuthors();
+  return authors.find((a) => a.slug === slug) ?? null;
+}
+
+export async function getArticlesByAuthor(
+  slug: string,
+  options: { page?: number; limit?: number } = {}
+): Promise<PaginatedResult<Article>> {
+  const { page = 1, limit = 12 } = options;
+  const entries = await getAllEntries();
+  const items = entries.map(toArticle).filter((a) => a.author.slug === slug);
+  return paginate(sortArticles(items), page, limit);
+}
+
 export async function getTagBySlug(slug: string): Promise<Tag | null> {
   const entries = await getAllEntries();
   for (const entry of entries) {
