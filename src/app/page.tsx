@@ -44,12 +44,13 @@ export default async function HomePage() {
   return (
     <Container className="py-8">
       {lead && (
-        <FeaturedStories lead={lead} secondary={secondary} latest={latestSidebar} grid={gridMore} />
+        <FeaturedStories
+          lead={lead}
+          secondary={secondary}
+          latest={latestSidebar}
+          grid={gridMore}
+        />
       )}
-
-      <div className="my-10">
-        <AdSlot variant="leaderboard" />
-      </div>
 
       <div className="mt-14">
         <MatchCentreSection feed={matchFeed} logos={leagueLogos} />
