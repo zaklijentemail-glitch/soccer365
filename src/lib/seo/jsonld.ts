@@ -1,5 +1,6 @@
 import { SITE } from "@/lib/constants";
 import type { Article } from "@/lib/data/types";
+import type { MatchFixture } from "@/lib/football/types";
 
 export function organizationSchema() {
   return {
@@ -77,6 +78,40 @@ export function articleSchema(article: Article, url: string) {
       url: `${SITE.url}/author/${article.author.slug}`,
     },
     publisher: organizationSchema(),
+  };
+}
+
+function sportsEventStatus(match: MatchFixture): string {
+  if (match.homeGoals !== null && match.awayGoals !== null) {
+    return "https://schema.org/EventCompleted";
+  }
+  return "https://schema.org/EventScheduled";
+}
+
+export function sportsEventSchema(match: MatchFixture) {
+  return {
+    "@type": "SportsEvent",
+    name: `${match.homeTeam} vs ${match.awayTeam}`,
+    startDate: match.kickoff,
+    eventStatus: sportsEventStatus(match),
+    superEvent: match.leagueName,
+    homeTeam: { "@type": "SportsTeam", name: match.homeTeam },
+    awayTeam: { "@type": "SportsTeam", name: match.awayTeam },
+    ...(match.homeGoals !== null && match.awayGoals !== null
+      ? { description: `${match.homeTeam} ${match.homeGoals}-${match.awayGoals} ${match.awayTeam}` }
+      : {}),
+  };
+}
+
+export function sportsEventListSchema(matches: MatchFixture[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: matches.map((match, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: sportsEventSchema(match),
+    })),
   };
 }
 

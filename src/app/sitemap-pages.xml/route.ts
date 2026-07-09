@@ -20,6 +20,7 @@ export async function GET() {
   const staticEntries = [
     urlEntry(SITE.url, undefined, "hourly", "1.0"),
     urlEntry(`${SITE.url}/news`, undefined, "hourly", "0.9"),
+    urlEntry(`${SITE.url}/results`, undefined, "hourly", "0.8"),
     urlEntry(`${SITE.url}/guides`, undefined, "weekly", "0.8"),
     urlEntry(`${SITE.url}/about`, undefined, "yearly", "0.4"),
     urlEntry(`${SITE.url}/contact`, undefined, "yearly", "0.4"),
