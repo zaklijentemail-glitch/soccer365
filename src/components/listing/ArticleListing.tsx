@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Pagination from "@/components/ui/Pagination";
 import { GuideCard } from "@/components/ui/ArticleCard";
 import AdSlot from "@/components/ui/AdSlot";
+import { MIN_ARTICLES_FOR_LISTING_AD } from "@/lib/constants";
 
 const tabClasses =
   "flex min-h-11 items-center rounded-full border border-line px-4 text-sm font-bold uppercase tracking-wide text-ink-soft hover:border-brand hover:text-brand";
@@ -100,9 +101,11 @@ export default function ArticleListing({
         </div>
       )}
 
-      <div className="my-10">
-        <AdSlot variant="leaderboard" />
-      </div>
+      {result.items.length >= MIN_ARTICLES_FOR_LISTING_AD && (
+        <div className="my-10">
+          <AdSlot variant="leaderboard" />
+        </div>
+      )}
 
       <Pagination
         basePath={basePath}

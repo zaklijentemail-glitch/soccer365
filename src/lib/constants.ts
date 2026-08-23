@@ -5,6 +5,33 @@
  */
 export const ADS_ENABLED = false;
 
+/**
+ * Publisher line for /ads.txt, e.g. "pub-0000000000000000". Set
+ * NEXT_PUBLIC_ADSENSE_PUBLISHER_ID once the AdSense account exists; the ID is
+ * issued at signup, so this does not have to wait for approval.
+ */
+export const ADSENSE_PUBLISHER_ID = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID ?? "";
+
+/**
+ * Shown as "last updated" on the legal pages. Bump by hand when a policy
+ * actually changes, so the date reflects a real revision rather than the
+ * build date.
+ */
+export const POLICY_UPDATED = "23 August 2026";
+
+/**
+ * An archive holding fewer articles than this is too thin to be worth
+ * indexing or to carry an ad unit. Google treats near-empty auto-generated
+ * archives as thin content, and serving ads against them breaks the
+ * "no ads on screens without publisher-content" publisher policy. Such pages
+ * stay reachable and crawlable, they are just noindex and ad-free until they
+ * fill up.
+ */
+export const MIN_ARTICLES_FOR_INDEXING = 3;
+
+/** Below this many cards, a listing page is mostly chrome: no ad unit. */
+export const MIN_ARTICLES_FOR_LISTING_AD = 4;
+
 export const SITE = {
   name: "Soccer 365",
   shortName: "Soccer 365",
@@ -46,7 +73,9 @@ export const FOOTER_INLINE_LINKS = [
   { label: "World Cup", href: "/category/world-cup" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Editorial Policy", href: "/editorial-policy" },
   { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
   { label: "Terms", href: "/terms" },
   { label: "DMCA", href: "/dmca" },
 ];

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
 import { getAllTags, getTagBySlug, getNewsByTag } from "@/lib/data";
+import { MIN_ARTICLES_FOR_INDEXING } from "@/lib/constants";
 
 export async function generateStaticParams() {
   const tags = await getAllTags();
@@ -20,6 +21,12 @@ export async function generateMetadata({
   return {
     title: `${tag.name} News & Articles`,
     description: `All Soccer 365 articles tagged ${tag.name}.`,
+    // A one- or two-article archive has nothing to offer a searcher, so keep
+    // it out of the index while leaving it crawlable for link discovery.
+    robots:
+      tag.articleCount < MIN_ARTICLES_FOR_INDEXING
+        ? { index: false, follow: true }
+        : undefined,
     alternates: { canonical: `/tag/${tag.slug}` },
   };
 }

@@ -21,6 +21,14 @@ export interface Tag {
   name: string;
 }
 
+/**
+ * A tag together with how many published articles carry it. Used to keep
+ * near-empty tag archives out of the index and out of ad inventory.
+ */
+export interface TagWithCount extends Tag {
+  articleCount: number;
+}
+
 export interface FaqItem {
   question: string;
   answer: string;

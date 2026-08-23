@@ -50,6 +50,25 @@ export default function PrivacyPolicyPage() {
         Internet.
       </p>
       <p>
+        In plain terms: <strong>third parties, including Google and its advertising partners,
+        may place and read cookies on your browser, or use web beacons and your IP address to
+        collect information, as a result of ads being served on this site.</strong>{" "}This
+        happens on this site and can be linked to your activity on other sites in the same
+        advertising network.
+      </p>
+      <p>
+        For a full account of what Google collects and how it uses that data when you visit a
+        site that uses its products, see{" "}
+        <a
+          href="https://policies.google.com/technologies/partner-sites"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          How Google uses data when you use our partners&apos; sites or apps
+        </a>
+        .
+      </p>
+      <p>
         You may opt out of personalised advertising by visiting{" "}
         <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">
           Google Ads Settings

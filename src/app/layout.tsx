@@ -3,6 +3,8 @@ import { Inter, Oswald } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
+import CookieBanner from "@/components/consent/CookieBanner";
+import { CONSENT_BOOTSTRAP_SCRIPT } from "@/lib/consent";
 import { rootGraphSchema } from "@/lib/seo/jsonld";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
@@ -90,6 +92,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${oswald.variable} h-full antialiased`}
     >
+      <head>
+        {/* Consent Mode defaults must run before any Google tag. */}
+        <script dangerouslySetInnerHTML={{ __html: CONSENT_BOOTSTRAP_SCRIPT }} />
+      </head>
       <body className="flex min-h-full flex-col bg-paper text-ink">
         <JsonLd data={rootGraphSchema()} />
         <Header />
@@ -97,6 +103,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

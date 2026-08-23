@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/constants";
+import { MIN_ARTICLES_FOR_INDEXING, SITE } from "@/lib/constants";
 import { getAllArticleSlugsWithType, getCategories, getAllTags, getAllAuthors } from "@/lib/data";
 
 function urlEntry(loc: string, lastmod?: string, changefreq = "weekly", priority = "0.6") {
@@ -24,7 +24,9 @@ export async function GET() {
     urlEntry(`${SITE.url}/guides`, undefined, "weekly", "0.8"),
     urlEntry(`${SITE.url}/about`, undefined, "yearly", "0.4"),
     urlEntry(`${SITE.url}/contact`, undefined, "yearly", "0.4"),
+    urlEntry(`${SITE.url}/editorial-policy`, undefined, "yearly", "0.4"),
     urlEntry(`${SITE.url}/privacy-policy`, undefined, "yearly", "0.3"),
+    urlEntry(`${SITE.url}/cookie-policy`, undefined, "yearly", "0.3"),
     urlEntry(`${SITE.url}/terms`, undefined, "yearly", "0.3"),
     urlEntry(`${SITE.url}/disclaimer`, undefined, "yearly", "0.3"),
     urlEntry(`${SITE.url}/dmca`, undefined, "yearly", "0.3"),
@@ -34,9 +36,11 @@ export async function GET() {
     urlEntry(`${SITE.url}/category/${c.slug}`, undefined, "hourly", "0.7")
   );
 
-  const tagEntries = tags.map((t) =>
-    urlEntry(`${SITE.url}/tag/${t.slug}`, undefined, "weekly", "0.4")
-  );
+  // Thin archives are noindex, so submitting them would just ask Google to
+  // crawl pages we have told it to drop.
+  const tagEntries = tags
+    .filter((t) => t.articleCount >= MIN_ARTICLES_FOR_INDEXING)
+    .map((t) => urlEntry(`${SITE.url}/tag/${t.slug}`, undefined, "weekly", "0.4"));
 
   const authorEntries = authors.map((a) =>
     urlEntry(`${SITE.url}/author/${a.slug}`, undefined, "weekly", "0.4")

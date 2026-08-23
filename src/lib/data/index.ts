@@ -1,5 +1,5 @@
 import "server-only";
-import type { Article, Category, PaginatedResult, Tag } from "./types";
+import type { Article, Category, PaginatedResult, Tag, TagWithCount } from "./types";
 import { CATEGORIES, getCategoryBySlug } from "./categories";
 import {
   getAllEntries,
@@ -151,22 +151,22 @@ export async function getArticlesByAuthor(
   return paginate(sortArticles(items), page, limit);
 }
 
-export async function getTagBySlug(slug: string): Promise<Tag | null> {
-  const entries = await getAllEntries();
-  for (const entry of entries) {
-    if (entry.frontmatter.tags.includes(slug)) {
-      return { id: `tag-${slug}`, slug, name: tagLabel(slug) };
-    }
-  }
-  return null;
+export async function getTagBySlug(slug: string): Promise<TagWithCount | null> {
+  const tags = await getAllTags();
+  return tags.find((t) => t.slug === slug) ?? null;
 }
 
-export async function getAllTags(): Promise<Tag[]> {
+export async function getAllTags(): Promise<TagWithCount[]> {
   const entries = await getAllEntries();
-  const map = new Map<string, Tag>();
+  const map = new Map<string, TagWithCount>();
   for (const entry of entries) {
     for (const slug of entry.frontmatter.tags) {
-      map.set(slug, { id: `tag-${slug}`, slug, name: tagLabel(slug) });
+      const existing = map.get(slug);
+      if (existing) {
+        existing.articleCount += 1;
+      } else {
+        map.set(slug, { id: `tag-${slug}`, slug, name: tagLabel(slug), articleCount: 1 });
+      }
     }
   }
   return Array.from(map.values());
@@ -248,4 +248,4 @@ export async function getRecentNewsForNewsSitemap(hours = 48): Promise<Article[]
     .sort(byDateDesc);
 }
 
-export type { Article, Category, PaginatedResult } from "./types";
+export type { Article, Category, PaginatedResult, Tag, TagWithCount } from "./types";

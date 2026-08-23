@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SocialIcon from "./SocialIcon";
+import CookieSettingsLink from "@/components/consent/CookieSettingsLink";
 import { FOOTER_INLINE_LINKS, SITE, SOCIAL_LINKS } from "@/lib/constants";
 
 export default function Footer() {
@@ -63,6 +64,12 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li className="flex items-center gap-x-3">
+              <span aria-hidden className="text-white/25">
+                |
+              </span>
+              <CookieSettingsLink className="text-sm font-semibold text-white/80 transition-colors hover:text-brand-light" />
+            </li>
           </ul>
         </nav>
 
