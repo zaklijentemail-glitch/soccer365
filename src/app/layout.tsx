@@ -6,7 +6,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import CookieBanner from "@/components/consent/CookieBanner";
 import { CONSENT_BOOTSTRAP_SCRIPT } from "@/lib/consent";
 import { rootGraphSchema } from "@/lib/seo/jsonld";
-import { SITE } from "@/lib/constants";
+import { ADSENSE_CLIENT_ID, SITE } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -95,6 +95,12 @@ export default function RootLayout({
       <head>
         {/* Consent Mode defaults must run before any Google tag. */}
         <script dangerouslySetInnerHTML={{ __html: CONSENT_BOOTSTRAP_SCRIPT }} />
+        {/* AdSense loader, deliberately after the consent defaults above. */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="flex min-h-full flex-col bg-paper text-ink">
         <JsonLd data={rootGraphSchema()} />

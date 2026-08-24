@@ -6,11 +6,18 @@
 export const ADS_ENABLED = false;
 
 /**
- * Publisher line for /ads.txt, e.g. "pub-0000000000000000". Set
- * NEXT_PUBLIC_ADSENSE_PUBLISHER_ID once the AdSense account exists; the ID is
- * issued at signup, so this does not have to wait for approval.
+ * AdSense publisher ID for this site. Not a secret: Google publishes it in the
+ * loader script tag on every page, so it lives in source rather than in env,
+ * and an env var can still override it per deployment.
+ *
+ * `ca-pub-...` is the form the loader script wants; `pub-...` is the form
+ * ads.txt wants. Both are derived from this one value.
  */
-export const ADSENSE_PUBLISHER_ID = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID ?? "";
+export const ADSENSE_CLIENT_ID =
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "ca-pub-1788818896309024";
+
+/** The same ID in the form ads.txt expects, without the leading "ca-". */
+export const ADSENSE_PUBLISHER_ID = ADSENSE_CLIENT_ID.replace(/^ca-/, "");
 
 /**
  * Shown as "last updated" on the legal pages. Bump by hand when a policy
