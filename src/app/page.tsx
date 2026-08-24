@@ -14,16 +14,14 @@ import {
 import { getStandingsBundle } from "@/lib/football/standings";
 import { getWorldCupKnockout } from "@/lib/football/worldcup";
 import {
-  getFeaturedNews,
   getLatestNews,
   getFeaturedGuides,
   getCategories,
 } from "@/lib/data";
 
 export default async function HomePage() {
-  const [featured, latest, guides, matches, standings, worldCup, categories] =
+  const [latest, guides, matches, standings, worldCup, categories] =
     await Promise.all([
-      getFeaturedNews(1),
       getLatestNews(13),
       getFeaturedGuides(6),
       getMatchCentreMatches(),
@@ -32,8 +30,8 @@ export default async function HomePage() {
       getCategories(),
     ]);
 
-  const lead = featured[0] ?? latest[0];
-  const rest = latest.filter((article) => article.id !== lead?.id);
+  // The newest article always leads; everything older shifts down one slot.
+  const [lead, ...rest] = latest;
   const secondary = rest.slice(0, 2);
   const latestSidebar = rest.slice(2, 6);
   const gridMore = rest.slice(6, 12);

@@ -12,6 +12,16 @@ export const CATEGORIES: Category[] = [
       "Breaking transfer news, confirmed deals and the latest rumours from the Premier League, La Liga, Serie A and beyond.",
   },
   {
+    id: "cat-premier-league",
+    slug: "premier-league",
+    name: "Premier League",
+    description:
+      "News, results, tactics and title-race analysis from England's top flight.",
+    meta_title: "Premier League News, Results & Analysis | Soccer 365",
+    meta_description:
+      "Premier League news, match reports, title-race analysis and team-by-team coverage from across England's top flight.",
+  },
+  {
     id: "cat-champions-league",
     slug: "champions-league",
     name: "Champions League",

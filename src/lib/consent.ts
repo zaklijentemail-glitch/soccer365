@@ -58,16 +58,17 @@ function emit(next: ConsentState) {
   for (const listener of listeners) listener();
 }
 
+// Attached once per client page load rather than per subscriber: the footer
+// trigger can fire before the banner hydrates, or while the banner renders
+// nothing because a choice was already made, and the event must still land.
+if (typeof window !== "undefined") {
+  window.addEventListener(CONSENT_REOPEN_EVENT, reopenConsent);
+}
+
 export function subscribeConsent(listener: () => void) {
   listeners.add(listener);
-  if (typeof window !== "undefined") {
-    window.addEventListener(CONSENT_REOPEN_EVENT, reopenConsent);
-  }
   return () => {
     listeners.delete(listener);
-    if (typeof window !== "undefined" && listeners.size === 0) {
-      window.removeEventListener(CONSENT_REOPEN_EVENT, reopenConsent);
-    }
   };
 }
 
