@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/constants";
+import { SITE, SOCIAL_LINKS } from "@/lib/constants";
 import type { Article } from "@/lib/data/types";
 import type { MatchFixture } from "@/lib/football/types";
 
@@ -14,11 +14,9 @@ export function organizationSchema() {
       width: SITE.logoWidth,
       height: SITE.logoHeight,
     },
-    sameAs: [
-      "https://www.facebook.com/soccer365",
-      "https://www.youtube.com/@soccer365",
-      "https://www.instagram.com/soccer365",
-    ],
+    // Derived from SOCIAL_LINKS so the schema can never drift from the
+    // profiles actually linked in the footer.
+    sameAs: SOCIAL_LINKS.map((s) => s.href),
   };
 }
 

@@ -64,11 +64,12 @@ export const NAV_LINKS = [
   { label: "World Cup", href: "/category/world-cup" },
 ];
 
-export type SocialPlatform = "facebook" | "x" | "instagram" | "youtube";
+export type SocialPlatform = "facebook" | "x" | "instagram" | "youtube" | "tiktok";
 
 export const SOCIAL_LINKS: { label: string; href: string; platform: SocialPlatform }[] = [
   { label: "Facebook", href: "https://www.facebook.com/news.soccer365", platform: "facebook" },
   { label: "YouTube", href: "https://www.youtube.com/@soccer365-uk", platform: "youtube" },
+  { label: "TikTok", href: "https://www.tiktok.com/@thesoccer365", platform: "tiktok" },
 ];
 
 /** Single inline row of footer links, goal.com-style, pipe-separated. */
