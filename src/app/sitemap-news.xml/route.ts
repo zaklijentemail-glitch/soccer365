@@ -34,6 +34,11 @@ ${entries.join("\n")}
 </urlset>`;
 
   return new Response(body, {
-    headers: { "Content-Type": "application/xml" },
+    headers: {
+      "Content-Type": "application/xml",
+      // Shorter than the pages sitemap: the 48-hour window this covers moves
+      // continuously, and Google News crawls it far more aggressively.
+      "Cache-Control": "public, max-age=0, s-maxage=300, stale-while-revalidate=600",
+    },
   });
 }

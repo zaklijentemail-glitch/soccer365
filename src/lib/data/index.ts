@@ -249,3 +249,58 @@ export async function getRecentNewsForNewsSitemap(hours = 48): Promise<Article[]
 }
 
 export type { Article, Category, PaginatedResult, Tag, TagWithCount } from "./types";
+
+/**
+ * Newest article timestamp per archive, for sitemap `lastmod`.
+ *
+ * Of the three per-URL signals a sitemap can carry, `lastmod` is the only one
+ * Google acts on: `changefreq` and `priority` are ignored outright. Article
+ * URLs already carried a real date, but the archives that list them did not,
+ * which is backwards for a news site where the category and tag pages are the
+ * ones turning over daily.
+ *
+ * An archive is only as fresh as the newest article on it, so that is the date
+ * used. Computed in one pass over the content so the sitemap route does not
+ * fan out into a query per tag.
+ */
+export interface SitemapLastmods {
+  site: string;
+  news: string;
+  guides: string;
+  byCategory: Record<string, string>;
+  byTag: Record<string, string>;
+  byAuthor: Record<string, string>;
+}
+
+export async function getSitemapLastmods(): Promise<SitemapLastmods> {
+  const articles = (await getAllEntries()).map(toArticle);
+
+  const newest = (items: Article[]) =>
+    items.reduce<string>(
+      (max, a) => (a.updated_at > max ? a.updated_at : max),
+      "1970-01-01T00:00:00.000Z"
+    );
+
+  const bump = (bucket: Record<string, string>, key: string, at: string) => {
+    if (!bucket[key] || at > bucket[key]) bucket[key] = at;
+  };
+
+  const byCategory: Record<string, string> = {};
+  const byTag: Record<string, string> = {};
+  const byAuthor: Record<string, string> = {};
+
+  for (const article of articles) {
+    bump(byCategory, article.category.slug, article.updated_at);
+    bump(byAuthor, article.author.slug, article.updated_at);
+    for (const tag of article.tags) bump(byTag, tag.slug, article.updated_at);
+  }
+
+  return {
+    site: newest(articles),
+    news: newest(articles.filter((a) => a.type === "news")),
+    guides: newest(articles.filter((a) => a.type === "guide")),
+    byCategory,
+    byTag,
+    byAuthor,
+  };
+}
