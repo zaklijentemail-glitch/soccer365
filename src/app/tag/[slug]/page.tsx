@@ -18,15 +18,17 @@ export async function generateMetadata({
   const { slug } = await params;
   const tag = await getTagBySlug(slug);
   if (!tag) return {};
+  // A one- or two-article archive has nothing to offer a searcher, so keep it
+  // out of the index while leaving it crawlable for link discovery. Spreading
+  // the key in only when it applies matters: a `robots: undefined` present on
+  // the object overrides the root layout's directives instead of inheriting
+  // them, which silently stripped max-image-preview:large from every tag page.
+  const thin = tag.articleCount < MIN_ARTICLES_FOR_INDEXING;
+
   return {
     title: `${tag.name} News & Articles`,
     description: `All Soccer 365 articles tagged ${tag.name}.`,
-    // A one- or two-article archive has nothing to offer a searcher, so keep
-    // it out of the index while leaving it crawlable for link discovery.
-    robots:
-      tag.articleCount < MIN_ARTICLES_FOR_INDEXING
-        ? { index: false, follow: true }
-        : undefined,
+    ...(thin ? { robots: { index: false, follow: true } } : {}),
     alternates: { canonical: `/tag/${tag.slug}` },
   };
 }

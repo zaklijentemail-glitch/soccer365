@@ -2,12 +2,22 @@ import { SITE, SOCIAL_LINKS } from "@/lib/constants";
 import type { Article } from "@/lib/data/types";
 import type { MatchFixture } from "@/lib/football/types";
 
+/** Absolute form of a site path, left alone if it is already absolute. */
+function absoluteUrl(path: string): string {
+  return /^https?:\/\//.test(path) ? path : `${SITE.url}${path}`;
+}
+
 export function organizationSchema() {
   return {
-    "@type": "Organization",
+    // NewsMediaOrganization is the Organization subtype Google documents for
+    // news publishers. It carries the same logo/sameAs handling and adds the
+    // publishing-principles slot that news E-E-A-T leans on.
+    "@type": "NewsMediaOrganization",
     "@id": `${SITE.url}/#organization`,
     name: SITE.name,
     url: SITE.url,
+    description: SITE.description,
+    publishingPrinciples: `${SITE.url}/editorial-policy`,
     logo: {
       "@type": "ImageObject",
       url: `${SITE.url}${SITE.logo}`,
@@ -66,16 +76,23 @@ export function articleSchema(article: Article, url: string) {
     "@type": article.type === "news" ? "NewsArticle" : "Article",
     headline: article.title,
     description: article.excerpt,
-    image: [article.cover_image],
+    // Schema.org image URLs have to resolve on their own: a site-relative path
+    // is not something a consumer outside the page can fetch, and Google drops
+    // the image rather than guessing the origin. Cover images are usually local
+    // paths but may already be absolute, so only prefix the ones that need it.
+    image: [absoluteUrl(article.cover_image)],
     datePublished: article.published_at,
     dateModified: article.updated_at,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     author: {
       "@type": "Person",
+      "@id": `${SITE.url}/author/${article.author.slug}#person`,
       name: article.author.name,
       url: `${SITE.url}/author/${article.author.slug}`,
     },
-    publisher: organizationSchema(),
+    // The full organization node already ships in the root graph on every
+    // page, so reference it by @id instead of restating it here.
+    publisher: { "@id": `${SITE.url}/#organization` },
   };
 }
 
