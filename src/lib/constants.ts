@@ -54,6 +54,28 @@ export const SITE = {
   logoHeight: 512,
 };
 
+/**
+ * Byline slugs that stand for the newsroom rather than an individual. They are
+ * marked up as Organization, not Person, because that is what they are, and
+ * Google supports organizational authorship. When a named journalist starts
+ * writing here, their slug simply stays off this list.
+ */
+export const TEAM_AUTHOR_SLUGS = ["soccer-365-team"];
+
+/**
+ * Subjects the site actually covers, used for the organisation's knowsAbout.
+ * Keep this honest: it is a claim of expertise, and every entry here has to be
+ * backed by published work.
+ */
+export const EXPERTISE = [
+  "Association football",
+  "Laws of the Game",
+  "Football transfer market",
+  "Premier League",
+  "UEFA Champions League",
+  "FIFA World Cup",
+];
+
 export const NAV_LINKS = [
   { label: "News", href: "/news" },
   { label: "Results", href: "/results" },

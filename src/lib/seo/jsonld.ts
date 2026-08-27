@@ -1,4 +1,4 @@
-import { SITE, SOCIAL_LINKS } from "@/lib/constants";
+import { EXPERTISE, SITE, SOCIAL_LINKS, TEAM_AUTHOR_SLUGS } from "@/lib/constants";
 import type { Article } from "@/lib/data/types";
 import type { MatchFixture } from "@/lib/football/types";
 
@@ -18,6 +18,7 @@ export function organizationSchema() {
     url: SITE.url,
     description: SITE.description,
     publishingPrinciples: `${SITE.url}/editorial-policy`,
+    knowsAbout: EXPERTISE,
     logo: {
       "@type": "ImageObject",
       url: `${SITE.url}${SITE.logo}`,
@@ -70,6 +71,47 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
   };
 }
 
+
+/**
+ * The entity credited with writing an article.
+ *
+ * "Soccer 365 team" was previously declared a Person. It is not one, and saying
+ * so in structured data is simply a false statement about who wrote the piece.
+ * Google accepts an organisation as an author, so a newsroom byline is modelled
+ * as one, linked to the publisher as its parent rather than floating free.
+ *
+ * A named journalist added later stays a Person: their slug just never goes
+ * into TEAM_AUTHOR_SLUGS.
+ */
+export function authorSchema(author: { name: string; slug: string; bio?: string | null; avatar_url?: string | null }) {
+  const url = `${SITE.url}/author/${author.slug}`;
+  const isTeam = TEAM_AUTHOR_SLUGS.includes(author.slug);
+
+  if (isTeam) {
+    return {
+      "@type": "Organization",
+      "@id": `${url}#organization`,
+      name: author.name,
+      url,
+      description: author.bio ?? undefined,
+      parentOrganization: { "@id": `${SITE.url}/#organization` },
+      publishingPrinciples: `${SITE.url}/editorial-policy`,
+      knowsAbout: EXPERTISE,
+    };
+  }
+
+  return {
+    "@type": "Person",
+    "@id": `${url}#person`,
+    name: author.name,
+    url,
+    image: author.avatar_url ?? undefined,
+    description: author.bio ?? undefined,
+    worksFor: { "@id": `${SITE.url}/#organization` },
+    knowsAbout: EXPERTISE,
+  };
+}
+
 export function articleSchema(article: Article, url: string) {
   return {
     "@context": "https://schema.org",
@@ -84,12 +126,7 @@ export function articleSchema(article: Article, url: string) {
     datePublished: article.published_at,
     dateModified: article.updated_at,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    author: {
-      "@type": "Person",
-      "@id": `${SITE.url}/author/${article.author.slug}#person`,
-      name: article.author.name,
-      url: `${SITE.url}/author/${article.author.slug}`,
-    },
+    author: authorSchema(article.author),
     // The full organization node already ships in the root graph on every
     // page, so reference it by @id instead of restating it here.
     publisher: { "@id": `${SITE.url}/#organization` },

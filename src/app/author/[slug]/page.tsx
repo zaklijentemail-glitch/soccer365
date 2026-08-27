@@ -4,6 +4,7 @@ import Image from "next/image";
 import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
 import JsonLd from "@/components/seo/JsonLd";
+import { authorSchema } from "@/lib/seo/jsonld";
 import { getAllAuthors, getAuthorBySlug, getArticlesByAuthor } from "@/lib/data";
 import { SITE } from "@/lib/constants";
 
@@ -42,16 +43,7 @@ export default async function AuthorPage({
   return (
     <Container className="py-8">
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "@id": `${url}#person`,
-          name: author.name,
-          url,
-          image: author.avatar_url ?? undefined,
-          description: author.bio ?? undefined,
-          worksFor: { "@id": `${SITE.url}/#organization` },
-        }}
+        data={{ "@context": "https://schema.org", ...authorSchema(author) }}
       />
 
       {author.avatar_url && (
