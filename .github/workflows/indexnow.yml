@@ -1,0 +1,97 @@
+# Tells IndexNow which pages changed, after the deploy carrying them is live.
+#
+# Google does not participate in IndexNow and finds new articles through the
+# sitemap on its own schedule; nothing here speeds that up. Bing, Yandex and the
+# rest do, and Bing is what Microsoft Copilot cites from, so this is worth the
+# few seconds it costs.
+#
+# The key is deliberately not a secret: IndexNow works by publishing it at a
+# public URL, and the file in public/ is the same value.
+name: IndexNow
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "content/**"
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Collect changed article URLs
+        id: urls
+        run: |
+          set -euo pipefail
+          base="https://www.soccer365.news"
+
+          # Added or modified only. A deleted article should not be announced as
+          # something worth crawling.
+          changed=$(git diff --name-only --diff-filter=AM HEAD^ HEAD -- 'content/**/*.mdx' || true)
+
+          : > urls.txt
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            slug=$(basename "$f" .mdx)
+            case "$f" in
+              content/news/*)   echo "$base/news/$slug"   >> urls.txt ;;
+              content/guides/*) echo "$base/guides/$slug" >> urls.txt ;;
+            esac
+          done <<< "$changed"
+
+          # The archives that list the changed articles moved too.
+          if [ -s urls.txt ]; then
+            {
+              echo "$base"
+              grep -q '/news/'   urls.txt && echo "$base/news"   || true
+              grep -q '/guides/' urls.txt && echo "$base/guides" || true
+            } >> urls.txt
+          fi
+
+          sort -u urls.txt -o urls.txt
+          echo "count=$(wc -l < urls.txt)" >> "$GITHUB_OUTPUT"
+          cat urls.txt
+
+      - name: Wait for the deploy to serve them
+        if: steps.urls.outputs.count != '0'
+        run: |
+          # Announcing a URL before the deploy is live invites a crawl of the
+          # previous version. Poll the first changed URL rather than guessing at
+          # a sleep duration.
+          url=$(head -1 urls.txt)
+          for i in $(seq 1 40); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "$url" || echo 000)
+            [ "$code" = "200" ] && { echo "live after ~$((i*15))s"; exit 0; }
+            sleep 15
+          done
+          echo "::warning::$url did not return 200 within 10 minutes; submitting anyway"
+
+      - name: Submit to IndexNow
+        if: steps.urls.outputs.count != '0'
+        run: |
+          set -euo pipefail
+          key=d2ef669e583ce48adeaf13deb6dc9a0b
+          payload=$(jq -n \
+            --arg host "www.soccer365.news" \
+            --arg key "$key" \
+            --arg loc "https://www.soccer365.news/$key.txt" \
+            --argjson list "$(jq -R -s 'split("\n") | map(select(length > 0))' < urls.txt)" \
+            '{host: $host, key: $key, keyLocation: $loc, urlList: $list}')
+
+          code=$(curl -s -o response.txt -w '%{http_code}' \
+            -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "$payload")
+
+          echo "IndexNow HTTP $code"
+          cat response.txt || true
+          # 200 and 202 both mean accepted.
+          case "$code" in 200|202) exit 0 ;; *) exit 1 ;; esac
