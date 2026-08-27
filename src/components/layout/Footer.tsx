@@ -79,6 +79,25 @@ export default function Footer() {
           contained in {SITE.name} may not be published, broadcast, rewritten or
           redistributed without the prior written authority of {SITE.name}.
         </p>
+
+        {/*
+          Required by the Football-Data.org API terms (§7.1), which ask for this
+          exact wording in a visible location. Fixtures, results and league
+          tables across the site come from them, so the credit belongs on every
+          page rather than only on the pages that render a table.
+        */}
+        <p className="mt-3 max-w-3xl text-xs leading-relaxed text-white/45">
+          Football data provided by the{" "}
+          <a
+            href="https://www.football-data.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 transition-colors hover:text-brand-light"
+          >
+            Football-Data.org API
+          </a>
+          .
+        </p>
       </Container>
     </footer>
   );
