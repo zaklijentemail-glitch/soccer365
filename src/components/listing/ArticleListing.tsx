@@ -7,6 +7,8 @@ import Pagination from "@/components/ui/Pagination";
 import { GuideCard } from "@/components/ui/ArticleCard";
 import AdSlot from "@/components/ui/AdSlot";
 import { MIN_ARTICLES_FOR_LISTING_AD } from "@/lib/constants";
+import JsonLd from "@/components/seo/JsonLd";
+import { articleListSchema } from "@/lib/seo/jsonld";
 
 const tabClasses =
   "flex min-h-11 items-center rounded-full border border-line px-4 text-sm font-bold uppercase tracking-wide text-ink-soft hover:border-brand hover:text-brand";
@@ -34,8 +36,15 @@ export default function ArticleListing({
 }) {
   const queryString = sort === "oldest" ? "sort=oldest" : undefined;
 
+  // Page 2 continues the numbering rather than restarting, so the two pages do
+  // not describe themselves as the same list.
+  const startPosition = (result.page - 1) * result.limit + 1;
+
   return (
     <div>
+      {result.items.length > 0 && (
+        <JsonLd data={articleListSchema(result.items, startPosition)} />
+      )}
       <Breadcrumbs items={breadcrumbs} />
 
       <h1 className="mt-4 font-display text-3xl font-bold uppercase tracking-tight text-ink">

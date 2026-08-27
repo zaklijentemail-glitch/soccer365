@@ -144,3 +144,33 @@ export function faqSchema(items: { question: string; answer: string }[]) {
     })),
   };
 }
+
+/**
+ * ItemList for an article archive: /news, /guides, category, tag and author
+ * pages all render through the same listing component, so they all get this.
+ *
+ * The listing pages previously carried a BreadcrumbList and nothing else, while
+ * /results already described its fixtures as an ItemList. This closes that
+ * inconsistency and states plainly what each archive contains and in what
+ * order, rather than leaving it to be inferred from the markup.
+ *
+ * `position` is offset by the page number so page 2 continues the sequence
+ * instead of restarting at 1 and claiming to be the same list.
+ */
+export function articleListSchema(
+  articles: Pick<Article, "title" | "slug" | "type">[],
+  startPosition = 1
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: articles.length,
+    itemListElement: articles.map((article, i) => ({
+      "@type": "ListItem",
+      position: startPosition + i,
+      url: `${SITE.url}/${article.type === "news" ? "news" : "guides"}/${article.slug}`,
+      name: article.title,
+    })),
+  };
+}
