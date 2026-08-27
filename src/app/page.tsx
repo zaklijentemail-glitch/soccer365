@@ -46,6 +46,21 @@ export default async function HomePage() {
 
   return (
     <Container className="py-8">
+      {/*
+        Every page needs one h1 saying what the page is. The homepage had none:
+        the lead story's headline was carrying the tag, which misdescribes the
+        page to a screen reader and leaves the site with no brand-level heading
+        anywhere. That absence shows up in Search Console as /about outranking
+        the homepage for "soccer 365" and its misspellings.
+
+        Visually hidden rather than rendered, because the masthead already
+        states the brand graphically and a second visible title would be
+        redundant. The text matches what the page is, so nothing is concealed
+        from a crawler that a reader is not also being told.
+      */}
+      <h1 className="sr-only">
+        Soccer 365: football news, transfers, results and rules explained
+      </h1>
       {lead && (
         <FeaturedStories
           lead={lead}

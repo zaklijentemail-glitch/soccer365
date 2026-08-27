@@ -32,11 +32,13 @@ function LeadStory({ article }: { article: Article }) {
       </Link>
       <div className="mt-4">
         <CategoryTag name={article.category.name} />
-        <h1 className="mt-2 font-display text-2xl font-bold uppercase leading-[1.05] tracking-tight text-ink sm:text-3xl lg:text-[2.5rem]">
+        {/* h2, not h1: this is the lead story, not what the page is. The page's
+            own h1 lives in the homepage route. Styling is unchanged. */}
+        <h2 className="mt-2 font-display text-2xl font-bold uppercase leading-[1.05] tracking-tight text-ink sm:text-3xl lg:text-[2.5rem]">
           <Link href={href} className="hover:text-brand">
             {article.title}
           </Link>
-        </h1>
+        </h2>
         <p className="mt-3 max-w-2xl text-ink-soft">{article.excerpt}</p>
         <div className="mt-4 flex items-center justify-between gap-4">
           <time className="text-sm text-ink-faint" dateTime={article.published_at}>
