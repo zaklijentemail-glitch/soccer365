@@ -22,6 +22,16 @@ export const CATEGORIES: Category[] = [
       "Premier League news, match reports, title-race analysis and team-by-team coverage from across England's top flight.",
   },
   {
+    id: "cat-serie-a",
+    slug: "serie-a",
+    name: "Serie A",
+    description:
+      "Team news, results and transfer business from Italy's top division.",
+    meta_title: "Serie A News, Results & Team News | Soccer 365",
+    meta_description:
+      "Serie A coverage: squad news, match reports, results and transfer business from Juventus, Inter, Milan, Napoli, Roma and the rest of Italy's top flight.",
+  },
+  {
     id: "cat-champions-league",
     slug: "champions-league",
     name: "Champions League",
