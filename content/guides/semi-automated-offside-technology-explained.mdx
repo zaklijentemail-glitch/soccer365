@@ -1,0 +1,88 @@
+---
+title: "Semi-Automated Offside Technology, Explained"
+slug: "semi-automated-offside-technology-explained"
+description: "Twelve tracking cameras, 29 data points per player fifty times a second, and a sensor inside the ball. How semi-automated offside works, why it is only semi-automated, and what the 3D animation on your screen actually is."
+excerpt: "How the cameras, limb tracking and ball sensor produce an offside alert, why a human still has to approve it, and what the 3D animation really shows."
+date: "2026-09-03T00:00:00.000Z"
+author:
+  name: "Soccer 365 team"
+  slug: "soccer-365-team"
+  bio: "The Soccer 365 editorial team writes and edits every article on the site: Premier League, Champions League and World Cup coverage, the transfer market, and a library of plain-English explainers on the laws of the game. Errors are corrected openly and revised articles carry an updated date."
+category: "rules"
+tags: ["laws-of-the-game", "var", "refereeing", "for-beginners"]
+coverImage: "/images/guides/offside-explained-simply.jpg"
+coverImageAlt: "A line of defenders on a football pitch with an attacking player caught ahead of the line"
+featured: false
+metaTitle: "Semi-Automated Offside Technology, Explained"
+faq:
+  - question: "How does semi-automated offside technology work?"
+    answer: "Twelve tracking cameras under the stadium roof follow up to 29 data points on every player, fifty times per second, while a sensor inside the ball reports 500 times per second. Combined, they identify the kick point and the players' limb positions, and alert the video officials when an attacker was offside."
+  - question: "Why is it called semi-automated and not automated?"
+    answer: "Because a human still signs it off. The system sends an automated alert, but the video officials must manually check the selected kick point and the generated offside line before anything is passed to the referee."
+  - question: "What is the sensor in the ball for?"
+    answer: "It is an inertial measurement unit that sends data 500 times per second, which pins down the exact moment the ball was played. That kick point is what the offside line is drawn against."
+  - question: "How many data points does it track on each player?"
+    answer: "Up to 29 per player, fifty times a second, covering the limbs and extremities that matter for an offside decision."
+  - question: "Is the 3D animation a reconstruction?"
+    answer: "No. FIFA says the animation is generated from exactly the same positional data used to make the decision, so it shows the measurement rather than an artist's impression of it."
+  - question: "Does it make offside decisions instant?"
+    answer: "Faster, not instant. It removes the manual frame-picking and line-drawing, but the validation step and the referee's restart still take time."
+---
+
+**Semi-automated offside technology uses twelve tracking cameras and a sensor inside the ball to work out, automatically, whether an attacker was offside when the ball was played.** The cameras follow up to **29 data points on every player, fifty times per second**. The ball reports its own position **500 times per second**. When the two disagree with the Law, the video officials get an alert.
+
+It is called *semi*-automated for one reason: a human still has to approve the answer before anyone tells the referee.
+
+## The problem it was built to solve
+
+Anyone who watched offside reviews in the years before this will remember the wait. A frozen frame, an official deciding which frame was the moment of the pass, then lines dragged across a still image by hand, then more waiting while someone checked whether the lines were on the right heel.
+
+Every step in that chain was a judgement, and two of them were judgements about pixels. Choosing the kick frame was subjective. Placing the line on a specific body part in a low-resolution still was subjective. And the whole thing took two or three minutes while eighty thousand people booed.
+
+The technology attacks both problems at once: it decides the kick point from the ball itself rather than from a camera frame, and it derives the line from tracked limbs rather than a human dragging one.
+
+## What the system is made of
+
+| Component | What it does |
+| --- | --- |
+| 12 tracking cameras | Mounted under the stadium roof, follow ball and players |
+| Up to 29 data points per player | Limbs and extremities relevant to offside, 50 times per second |
+| IMU sensor in the ball | Reports 500 times per second, fixes the exact kick point |
+| Automated alert | Fires when a receiving attacker was offside at the kick point |
+| Human validation | Officials check the kick point and the generated line |
+
+Those figures are [FIFA's own](https://inside.fifa.com/innovation/world-cup-2022/semi-automated-offside-technology), not estimates.
+
+The 29 data points matter more than the camera count. Offside is not decided by where a player's body is, but by where the first part of them that can legally play the ball is: a shoulder, a knee, a toe. A system tracking a single point per player would be useless. It has to know where the extremities are, which is exactly what those points cover.
+
+## Why the ball sensor is the clever part
+
+The cameras get the attention, but the sensor inside the ball is what removes the oldest argument in offside reviews.
+
+An **inertial measurement unit** sits in the centre of the ball and reports 500 times per second. That resolution is enough to detect the instant of contact — the moment a boot changes the ball's motion — rather than inferring it from video shot at a far lower frame rate.
+
+This matters because offside is judged at the moment the ball is *played*, not when it arrives. Under the old system, picking the wrong frame by one or two moved the line by a boot's length, and a boot's length is the entire margin in most contested calls. The sensor makes that choice a measurement instead of an opinion.
+
+## Where the human comes back in
+
+The system does not referee anything. It raises a flag.
+
+When an attacker who was in an offside position receives the ball, an **automated alert** goes to the video match officials in the video operation room. Before that reaches the on-field referee, the officials must manually check two things: the **automatically selected kick point**, and the **automatically created offside line** derived from the players' limb positions.
+
+Only after that validation does the information travel to the referee, who applies the Law as normal. The technology narrows the question to something checkable. It does not answer it on anyone's behalf, and that distinction is what the word *semi* is carrying.
+
+## The 3D animation is the actual data
+
+The graphic that appears on screen and on the big screen in the stadium is not a dramatisation produced afterwards.
+
+FIFA is specific about this: "exactly the same positional data points that were used to make the decision in real time are then immediately generated into a 3D animation." What you are shown is the measurement, rendered. That is a meaningful difference from the old broadcast lines, which were drawn for television and were not always the same lines the officials used.
+
+## What it does not fix
+
+Two things worth being clear about, because the technology gets blamed for both.
+
+**It does not change the Law.** Being ahead of the second-last opponent by a toe is still offside, and a system that measures toes more accurately produces more decisions of exactly that kind, not fewer. If you object to marginal offsides on principle, the objection is with the Law, not the cameras.
+
+**It does not make decisions instant.** It removes the slow manual steps, but validation still happens, the referee still has to be told, and play still has to be restarted. Faster is not the same as immediate.
+
+For the Law itself — where the line is drawn, which body parts count, and why being in an offside position is not an offence on its own — see [offside explained simply](/guides/offside-explained-simply). For what the video officials may and may not review at all, see the [VAR guide](/guides/what-is-var-and-how-does-it-work).
