@@ -26,6 +26,13 @@ export const frontmatterSchema = z.object({
   coverImageAlt: z.string(),
   featured: z.boolean().default(false),
   draft: z.boolean().default(false),
+  /**
+   * Keep the article readable and linked, but out of the index and out of
+   * the homepage. For aggregated coverage that adds little beyond its source:
+   * it stays for anyone who lands on it, without presenting the site as a
+   * news aggregator to a crawler.
+   */
+  noindex: z.boolean().default(false),
   readingTime: z.number().optional(),
   metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),

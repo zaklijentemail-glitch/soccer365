@@ -32,6 +32,9 @@ export async function generateMetadata({
     title: article.meta_title ?? article.title,
     description: article.meta_description ?? article.excerpt,
     alternates: { canonical: `/news/${article.slug}` },
+    // Aggregated coverage stays readable and crawlable for link discovery,
+    // but is not offered to the index.
+    robots: article.noindex ? { index: false, follow: true } : undefined,
     openGraph: {
       type: "article",
       url,

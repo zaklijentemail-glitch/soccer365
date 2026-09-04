@@ -52,6 +52,8 @@ export interface Article {
   updated_at: string;
   reading_time_minutes: number;
   is_featured: boolean;
+  /** Readable and linked, but kept out of the index, sitemap and homepage. */
+  noindex: boolean;
   faq?: FaqItem[];
   meta_title?: string;
   meta_description?: string;

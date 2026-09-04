@@ -41,6 +41,7 @@ function toArticle(entry: RawContentEntry): Article {
     updated_at: (fm.updatedAt ?? fm.date).toISOString(),
     reading_time_minutes: entry.readingTimeMinutes,
     is_featured: fm.featured,
+    noindex: fm.noindex,
     faq: fm.faq,
     meta_title: fm.metaTitle,
     meta_description: fm.metaDescription ?? fm.description,
@@ -210,7 +211,11 @@ export async function getGuides(
 
 export async function getLatestNews(limit = 8): Promise<Article[]> {
   const entries = await getAllNewsEntries();
-  return entries.map(toArticle).sort(byDateDesc).slice(0, limit);
+  return entries
+    .map(toArticle)
+    .filter((a) => !a.noindex)
+    .sort(byDateDesc)
+    .slice(0, limit);
 }
 
 export async function searchArticles(query: string, limit = 20): Promise<Article[]> {
@@ -232,11 +237,13 @@ export async function getAllArticleSlugsWithType(): Promise<
   { slug: string; type: Article["type"]; updated_at: string }[]
 > {
   const entries = await getAllEntries();
-  return entries.map((entry) => ({
-    slug: entry.frontmatter.slug,
-    type: entry.type,
-    updated_at: (entry.frontmatter.updatedAt ?? entry.frontmatter.date).toISOString(),
-  }));
+  return entries
+    .filter((entry) => !entry.frontmatter.noindex)
+    .map((entry) => ({
+      slug: entry.frontmatter.slug,
+      type: entry.type,
+      updated_at: (entry.frontmatter.updatedAt ?? entry.frontmatter.date).toISOString(),
+    }));
 }
 
 export async function getRecentNewsForNewsSitemap(hours = 48): Promise<Article[]> {
@@ -244,7 +251,7 @@ export async function getRecentNewsForNewsSitemap(hours = 48): Promise<Article[]
   const entries = await getAllNewsEntries();
   return entries
     .map(toArticle)
-    .filter((a) => new Date(a.published_at).getTime() >= cutoff)
+    .filter((a) => !a.noindex && new Date(a.published_at).getTime() >= cutoff)
     .sort(byDateDesc);
 }
 

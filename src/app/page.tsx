@@ -23,7 +23,7 @@ export default async function HomePage() {
   const [latest, guides, matches, standings, worldCup, categories] =
     await Promise.all([
       getLatestNews(13),
-      getFeaturedGuides(6),
+      getFeaturedGuides(9),
       getMatchCentreMatches(),
       getStandingsBundle(),
       getWorldCupKnockout(),
@@ -61,13 +61,52 @@ export default async function HomePage() {
       <h1 className="sr-only">
         Soccer 365: football news, transfers, results and rules explained
       </h1>
+      {/*
+        The guides lead the page. They are the only thing here that exists
+        nowhere else: the news is reported elsewhere first and the score and
+        table widgets are third-party data. Putting borrowed material above
+        original work described the site as an aggregator, which is neither
+        accurate nor the impression worth giving a first-time reader.
+      */}
+      <section>
+        <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-3">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wide text-brand">
+              Learn Football
+            </span>
+            <h2 className="mt-1 font-display text-xl font-bold uppercase tracking-tight text-ink">
+              Football Explained
+            </h2>
+          </div>
+          <Link
+            href="/guides"
+            className="text-sm font-bold uppercase text-brand hover:text-brand-dark"
+          >
+            All guides →
+          </Link>
+        </div>
+        <p className="mt-4 max-w-3xl text-[1.0625rem] leading-relaxed text-ink-soft">
+          Plain-English answers to the questions football never quite explains:
+          what a loan actually costs, why the handball rule keeps changing, how
+          clubs end up selling the players they spent a decade developing. Every
+          guide is written and checked in-house.
+        </p>
+        <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {guides.map((article) => (
+            <GuideCard key={article.id} article={article} />
+          ))}
+        </div>
+      </section>
+
       {lead && (
-        <FeaturedStories
-          lead={lead}
-          secondary={secondary}
-          latest={latestSidebar}
-          grid={gridMore}
-        />
+        <div className="mt-14">
+          <FeaturedStories
+            lead={lead}
+            secondary={secondary}
+            latest={latestSidebar}
+            grid={gridMore}
+          />
+        </div>
       )}
 
       <div className="mt-14">
@@ -81,30 +120,6 @@ export default async function HomePage() {
       <div className="mt-14">
         <StandingsSection standings={standings} worldCup={worldCup} />
       </div>
-
-      <section className="mt-14">
-        <div className="flex items-baseline justify-between border-b border-line pb-3">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wide text-brand">
-              Learn Football
-            </span>
-            <h2 className="mt-1 font-display text-xl font-bold uppercase tracking-tight text-ink">
-              Featured Guides
-            </h2>
-          </div>
-          <Link
-            href="/guides"
-            className="text-sm font-bold uppercase text-brand hover:text-brand-dark"
-          >
-            All guides →
-          </Link>
-        </div>
-        <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {guides.map((article) => (
-            <GuideCard key={article.id} article={article} />
-          ))}
-        </div>
-      </section>
 
       <div className="my-14">
         <AdSlot variant="rectangle" className="mx-auto max-w-md" />
