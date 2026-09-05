@@ -2,7 +2,13 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
-import { getCategories, getCategoryBySlugAsync, getNewsByCategory } from "@/lib/data";
+import {
+  getCategories,
+  getCategoryArticleCounts,
+  getCategoryBySlugAsync,
+  getNewsByCategory,
+} from "@/lib/data";
+import { MIN_ARTICLES_FOR_INDEXING } from "@/lib/constants";
 import type { SortOrder } from "@/lib/data";
 
 export async function generateStaticParams() {
@@ -22,6 +28,13 @@ export async function generateMetadata({
     title: category.meta_title,
     description: category.meta_description,
     alternates: { canonical: `/category/${category.slug}` },
+    // A category holding one or two articles is a thin archive, and being in
+    // the main navigation makes it more visible, not more useful. It stays
+    // browsable and crawlable, just not offered to the index until it fills.
+    robots:
+      (await getCategoryArticleCounts())[category.slug] < MIN_ARTICLES_FOR_INDEXING
+        ? { index: false, follow: true }
+        : undefined,
   };
 }
 

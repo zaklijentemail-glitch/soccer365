@@ -2,6 +2,7 @@ import { MIN_ARTICLES_FOR_INDEXING, POLICY_UPDATED, SITE } from "@/lib/constants
 import {
   getAllArticleSlugsWithType,
   getCategories,
+  getCategoryArticleCounts,
   getAllTags,
   getAllAuthors,
   getSitemapLastmods,
@@ -19,9 +20,10 @@ function urlEntry(loc: string, lastmod?: string, changefreq = "weekly", priority
 }
 
 export async function GET() {
-  const [articles, categories, tags, authors, lastmod] = await Promise.all([
+  const [articles, categories, categoryCounts, tags, authors, lastmod] = await Promise.all([
     getAllArticleSlugsWithType(),
     getCategories(),
+    getCategoryArticleCounts(),
     getAllTags(),
     getAllAuthors(),
     getSitemapLastmods(),
@@ -44,9 +46,13 @@ export async function GET() {
     urlEntry(`${SITE.url}/dmca`, policyLastmod, "yearly", "0.3"),
   ];
 
-  const categoryEntries = categories.map((c) =>
-    urlEntry(`${SITE.url}/category/${c.slug}`, lastmod.byCategory[c.slug], "hourly", "0.7")
-  );
+  // Same rule as the tag archives below: a category too thin to index is
+  // too thin to submit.
+  const categoryEntries = categories
+    .filter((c) => (categoryCounts[c.slug] ?? 0) >= MIN_ARTICLES_FOR_INDEXING)
+    .map((c) =>
+      urlEntry(`${SITE.url}/category/${c.slug}`, lastmod.byCategory[c.slug], "hourly", "0.7")
+    );
 
   // Thin archives are noindex, so submitting them would just ask Google to
   // crawl pages we have told it to drop.

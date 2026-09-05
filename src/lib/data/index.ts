@@ -100,6 +100,23 @@ export async function getCategories(): Promise<Category[]> {
   return CATEGORIES;
 }
 
+/**
+ * How many indexable articles sit in a category. Mirrors the tag archive
+ * count: a category holding one or two pieces is as thin as a tag holding
+ * one or two, and it is worse for being in the main navigation.
+ */
+export async function getCategoryArticleCounts(): Promise<Record<string, number>> {
+  const entries = await getAllEntries();
+  const counts: Record<string, number> = {};
+  for (const c of CATEGORIES) counts[c.slug] = 0;
+  for (const entry of entries) {
+    if (entry.frontmatter.noindex) continue;
+    const slug = entry.frontmatter.category;
+    if (slug in counts) counts[slug] += 1;
+  }
+  return counts;
+}
+
 export async function getCategoryBySlugAsync(slug: string): Promise<Category | null> {
   return getCategoryBySlug(slug) ?? null;
 }
