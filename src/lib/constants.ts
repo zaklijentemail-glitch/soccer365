@@ -45,7 +45,7 @@ export const SITE = {
   domain: "soccer365.news",
   url: "https://www.soccer365.news",
   description:
-    "Soccer 365 brings you the latest football news, transfers, Champions League and World Cup coverage. Fast, clear, no filler.",
+    "Football explained in plain English: the laws of the game, how transfers and contracts really work, and where the money goes. Plus selective news.",
   locale: "en_GB",
   language: "en",
   twitter: "@soccer365",
