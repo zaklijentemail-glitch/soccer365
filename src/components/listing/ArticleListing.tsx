@@ -23,6 +23,7 @@ export default function ArticleListing({
   basePath,
   categoryFilter,
   sort,
+  intro,
 }: {
   title: string;
   description?: string;
@@ -33,6 +34,11 @@ export default function ArticleListing({
   categoryFilter?: { categories: Category[]; activeSlug?: string };
   /** Renders a Newest/Oldest sort toggle. Omit to hide it. */
   sort?: SortOrder;
+  /**
+   * Optional editorial block between the description and the grid, for a
+   * listing that needs to orient a reader before showing them cards.
+   */
+  intro?: React.ReactNode;
 }) {
   const queryString = sort === "oldest" ? "sort=oldest" : undefined;
 
@@ -51,6 +57,8 @@ export default function ArticleListing({
         {title}
       </h1>
       {description && <p className="mt-2 max-w-2xl text-ink-soft">{description}</p>}
+
+      {intro}
 
       {(categoryFilter || sort) && (
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
