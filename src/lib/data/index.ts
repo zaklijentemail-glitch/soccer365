@@ -85,7 +85,10 @@ export async function getNews(
 ): Promise<PaginatedResult<Article>> {
   const { page = 1, limit = 12, category, sort = "newest" } = options;
   const entries = await getAllNewsEntries();
-  let items = entries.map(toArticle);
+  // /news is in the main navigation, so it should not lead with the pieces we
+  // decided add little beyond their source. They stay live at their own URLs
+  // and stay linked from the category and tag archives, just not from here.
+  let items = entries.map(toArticle).filter((a) => !a.noindex);
   if (category) {
     items = items.filter((a) => a.category.slug === category);
   }
