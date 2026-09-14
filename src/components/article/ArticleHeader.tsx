@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CoverFallback from "@/components/ui/CoverFallback";
 import Link from "next/link";
 import type { Article } from "@/lib/data/types";
 import { formatDate } from "@/lib/utils";
@@ -50,14 +51,18 @@ export default function ArticleHeader({
       </div>
 
       <div className="relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-card bg-paper-soft">
-        <Image
-          src={article.cover_image}
-          alt={article.cover_image_alt}
-          fill
-          priority
-          sizes="(max-width: 1024px) 100vw, 768px"
-          className="object-cover"
-        />
+        {article.cover_image ? (
+          <Image
+            src={article.cover_image}
+            alt={article.cover_image_alt}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 768px"
+            className="object-cover"
+          />
+        ) : (
+          <CoverFallback article={article} size="hero" />
+        )}
       </div>
     </header>
   );

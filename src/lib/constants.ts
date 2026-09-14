@@ -24,6 +24,17 @@ export const ADSENSE_PUBLISHER_ID = ADSENSE_CLIENT_ID.replace(/^ca-/, "");
  * actually changes, so the date reflects a real revision rather than the
  * build date.
  */
+/**
+ * The old stock cover. It is an AI-generated stadium scene carrying garbled
+ * FIFA, Emirates and adidas marks, so it must not be published as a
+ * photograph. Articles still pointing at it are treated as having no cover
+ * and get a typographic panel instead.
+ */
+export const PLACEHOLDER_COVER = "/images/default.jpg";
+
+/** Social and structured-data fallback when an article has no photograph. */
+export const SOCIAL_FALLBACK_IMAGE = "/images/og-image.webp";
+
 export const POLICY_UPDATED = "23 August 2026";
 
 /**

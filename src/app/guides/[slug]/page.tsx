@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getNewsBySlug, getRelatedNews, getAllArticleSlugsWithType } from "@/lib/data";
-import { SITE } from "@/lib/constants";
+import { SITE, SOCIAL_FALLBACK_IMAGE } from "@/lib/constants";
 import { articleSchema } from "@/lib/seo/jsonld";
 import JsonLd from "@/components/seo/JsonLd";
 import ArticleHeader from "@/components/article/ArticleHeader";
@@ -37,7 +37,7 @@ export async function generateMetadata({
       url,
       title: article.title,
       description: article.excerpt,
-      images: [{ url: article.cover_image, width: 1200, height: 675 }],
+      images: [{ url: article.cover_image || SOCIAL_FALLBACK_IMAGE, width: 1200, height: 675 }],
       publishedTime: article.published_at,
       modifiedTime: article.updated_at,
     },
@@ -45,7 +45,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: article.title,
       description: article.excerpt,
-      images: [article.cover_image],
+      images: [article.cover_image || SOCIAL_FALLBACK_IMAGE],
     },
   };
 }

@@ -1,4 +1,10 @@
-import { EXPERTISE, SITE, SOCIAL_LINKS, TEAM_AUTHOR_SLUGS } from "@/lib/constants";
+import {
+  EXPERTISE,
+  SITE,
+  SOCIAL_FALLBACK_IMAGE,
+  SOCIAL_LINKS,
+  TEAM_AUTHOR_SLUGS,
+} from "@/lib/constants";
 import type { Article } from "@/lib/data/types";
 import type { MatchFixture } from "@/lib/football/types";
 
@@ -122,7 +128,7 @@ export function articleSchema(article: Article, url: string) {
     // is not something a consumer outside the page can fetch, and Google drops
     // the image rather than guessing the origin. Cover images are usually local
     // paths but may already be absolute, so only prefix the ones that need it.
-    image: [absoluteUrl(article.cover_image)],
+    image: [absoluteUrl(article.cover_image || SOCIAL_FALLBACK_IMAGE)],
     datePublished: article.published_at,
     dateModified: article.updated_at,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },

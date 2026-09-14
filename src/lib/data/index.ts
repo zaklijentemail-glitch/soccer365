@@ -1,6 +1,7 @@
 import "server-only";
 import type { Article, Category, PaginatedResult, Tag, TagWithCount } from "./types";
 import { CATEGORIES, getCategoryBySlug } from "./categories";
+import { PLACEHOLDER_COVER } from "@/lib/constants";
 import {
   getAllEntries,
   getAllNewsEntries,
@@ -26,7 +27,7 @@ function toArticle(entry: RawContentEntry): Article {
     title: fm.title,
     excerpt: fm.excerpt,
     content: entry.body,
-    cover_image: fm.coverImage,
+    cover_image: fm.coverImage === PLACEHOLDER_COVER ? "" : fm.coverImage,
     cover_image_alt: fm.coverImageAlt,
     category,
     tags: fm.tags.map((slug): Tag => ({ id: `tag-${slug}`, slug, name: tagLabel(slug) })),

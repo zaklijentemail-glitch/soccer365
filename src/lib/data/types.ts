@@ -43,6 +43,7 @@ export interface Article {
   title: string;
   excerpt: string;
   content: string;
+  /** Path to the cover photograph, or "" when the article has none. */
   cover_image: string;
   cover_image_alt: string;
   category: Category;
