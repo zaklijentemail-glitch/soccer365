@@ -1,8 +1,9 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { mdxOptions } from "@/lib/content/mdx-options";
 import TweetEmbed from "@/components/article/TweetEmbed";
+import Formation from "@/components/article/Formation";
 
-const mdxComponents = { TweetEmbed };
+const mdxComponents = { TweetEmbed, Formation };
 
 export default function ArticleBody({ content }: { content: string }) {
   return (

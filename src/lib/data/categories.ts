@@ -52,6 +52,16 @@ export const CATEGORIES: Category[] = [
       "Every result, storyline and tactical breakdown from the FIFA World Cup, updated as the tournament unfolds.",
   },
   {
+    id: "cat-tactics",
+    slug: "tactics",
+    name: "Tactics",
+    description:
+      "Formations, positions and the roles inside them, drawn out and explained with the teams that made them work.",
+    meta_title: "Football Tactics, Formations & Positions Explained",
+    meta_description:
+      "Football formations and positions explained with diagrams: how each shape works, its strengths and weaknesses, and the sides that played it best.",
+  },
+  {
     id: "cat-rules",
     slug: "rules",
     name: "Rules & Guides",
