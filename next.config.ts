@@ -23,7 +23,34 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
 ];
 
+/**
+ * News pieces removed on 2026-09-27 for restating a single source without
+ * adding to it. Each points at the page that covers the same subject in the
+ * site's own words, or at /news where no such page exists.
+ */
+const removedNews: Record<string, string> = {
+  "balogun-ruling-england-france-card-appeals": "/guides/yellow-and-red-cards-explained",
+  "france-push-fifa-to-overturn-olise-yellow-card": "/guides/yellow-and-red-cards-explained",
+  "fifa-sanctions-world-cup-final-brawl": "/guides/yellow-and-red-cards-explained",
+  "collina-rejects-bias-claims-argentina-egypt": "/guides/what-is-var-and-how-does-it-work",
+  "switzerland-ready-test-argentina-colombia-shootout": "/guides/extra-time-and-penalty-shootouts-explained",
+  "pub-hours-extended-england-norway-world-cup": "/guides/world-cup-2026-format-explained",
+  "usa-world-cup-run-ends-in-belgium-rout": "/guides/world-cup-2026-format-explained",
+  "tottenham-sign-savinho-manchester-city": "/guides/how-transfer-windows-work",
+  "bruno-fernandes-hat-trick-manchester-united-ipswich": "/news",
+  "jonathan-david-atletico-fitness-criticism-griezmann": "/news",
+  "juventus-squad-list-parma-yildiz-mckennie-out": "/news",
+  "messi-retires-argentina-national-team": "/news",
+};
+
 const nextConfig: NextConfig = {
+  async redirects() {
+    return Object.entries(removedNews).map(([slug, destination]) => ({
+      source: `/news/${slug}`,
+      destination,
+      permanent: true,
+    }));
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
