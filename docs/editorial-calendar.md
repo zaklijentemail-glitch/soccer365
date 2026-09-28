@@ -43,7 +43,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 
 - [x] 3-5-2 formation (1,900/21) — tactics — 2026-09-27
 - [x] Max Dowman profile (27,100/41) — premier-league — 2026-09-27
-- [ ] 4-2-3-1 formation explained (1,900/25) — tactics. Slug `4-2-3-1-formation-explained`.
+- [x] 4-2-3-1 formation explained (1,900/25) — tactics. Slug `4-2-3-1-formation-explained`. — 2026-09-28
 - [ ] Types of striker: target man, poacher, false 9, complete forward (striker in soccer 1,600/24) — tactics. Slug `types-of-striker-explained`.
 - [ ] Best centre-backs in the world 2026 (1,300/23) — premier-league. Slug `best-centre-backs-in-the-world`.
 - [ ] Arsenal's Invincibles: the 2003-04 unbeaten season (1,300/32) — premier-league. Slug `arsenal-invincibles-unbeaten-season`.
