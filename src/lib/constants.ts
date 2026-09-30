@@ -93,7 +93,7 @@ export const NAV_LINKS = [
   { label: "Guides", href: "/guides" },
   { label: "Premier League", href: "/category/premier-league" },
   { label: "Transfers", href: "/category/transfers" },
-  { label: "Champions League", href: "/category/champions-league" },
+  { label: "Tactics", href: "/category/tactics" },
   { label: "World Cup", href: "/category/world-cup" },
 ];
 
@@ -112,7 +112,7 @@ export const FOOTER_INLINE_LINKS = [
   { label: "Guides", href: "/guides" },
   { label: "Premier League", href: "/category/premier-league" },
   { label: "Transfers", href: "/category/transfers" },
-  { label: "Champions League", href: "/category/champions-league" },
+  { label: "Tactics", href: "/category/tactics" },
   { label: "World Cup", href: "/category/world-cup" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
