@@ -3,6 +3,7 @@ import CoverFallback from "@/components/ui/CoverFallback";
 import Link from "next/link";
 import type { Article } from "@/lib/data/types";
 import { formatDate } from "@/lib/utils";
+import { EDITOR } from "@/lib/constants";
 import Breadcrumbs, { type BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 export default function ArticleHeader({
@@ -35,6 +36,13 @@ export default function ArticleHeader({
         <span>
           By{" "}
           <span className="font-semibold text-ink-soft">{article.author.name}</span>
+        </span>
+        <span aria-hidden="true">&middot;</span>
+        <span>
+          Edited by{" "}
+          <Link href={`/about#${EDITOR.anchor}`} className="font-semibold text-ink-soft hover:text-brand">
+            {EDITOR.name}
+          </Link>
         </span>
         <span aria-hidden="true">&middot;</span>
         <time dateTime={article.published_at}>{formatDate(article.published_at)}</time>

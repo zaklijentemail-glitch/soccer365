@@ -35,7 +35,7 @@ export const PLACEHOLDER_COVER = "/images/default.jpg";
 /** Social and structured-data fallback when an article has no photograph. */
 export const SOCIAL_FALLBACK_IMAGE = "/images/og-image.webp";
 
-export const POLICY_UPDATED = "23 August 2026";
+export const POLICY_UPDATED = "30 September 2026";
 
 /**
  * An archive holding fewer articles than this is too thin to be worth
@@ -72,6 +72,34 @@ export const SITE = {
  * writing here, their slug simply stays off this list.
  */
 export const TEAM_AUTHOR_SLUGS = ["soccer-365-team"];
+
+/**
+ * The person who runs the site and is accountable for what it publishes.
+ * Every claim in the bio comes from him; nothing here may be embellished.
+ * Deliberately no page of his own: he is shown on /about and credited as
+ * editor on articles, so the site proves a real person stands behind it
+ * without building a profile that competes with his own for his name.
+ */
+export const EDITOR = {
+  name: "Faris Zenunović",
+  anchor: "editor",
+  jobTitle: "Founder and Editor",
+  image: "/images/editors/faris-zenunovic.jpg",
+  bio:
+    "Faris Zenunović founded Soccer 365 and edits everything it publishes. He trained and played football for 14 years with local clubs in Bosnia and Herzegovina, including in the country's second tier, and has followed the game closely for 16 years, above all the Premier League and LaLiga, with a particular interest in statistics and tactical analysis.",
+  sameAs: [
+    "https://www.fariszenunovic.com/",
+    "https://www.linkedin.com/in/fariszenunovic/",
+    "https://www.instagram.com/znnvyc/",
+    "https://www.youtube.com/@FarisZenunovi%C4%87",
+    "https://www.facebook.com/faris.zenunovic.9/",
+  ],
+};
+
+/** The company that owns and publishes the site. */
+export const OWNER = {
+  name: "ZT Media",
+};
 
 /**
  * Subjects the site actually covers, used for the organisation's knowsAbout.

@@ -33,7 +33,8 @@ Read by the scheduled publishing agent on every run. Not served by the site.
 - Best-of lists: state the ranking criteria up front, give each player a stat
   line from the current or last completed season, and say which season.
 - Never invent quotes, stats, transfer fees or dates. Never name a writer; the byline
-  is the Soccer 365 team.
+  is the Soccer 365 team. The site-wide editor credit (Faris Zenunović) is added by the
+  layout; never mention him, first-hand experience or "we watched" claims in article text.
 - Do not edit anything outside `content/guides/`, `docs/editorial-calendar.md`,
   and `src/components/article/` (only if a diagram needs a fix).
 

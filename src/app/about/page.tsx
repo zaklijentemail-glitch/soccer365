@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage from "@/components/legal/LegalPage";
-import { SITE } from "@/lib/constants";
+import Image from "next/image";
+import { EDITOR, OWNER, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -48,20 +49,32 @@ export default function AboutPage() {
         behind it and link to the guide that sets out how it works.
       </p>
 
-      <h2>Who Writes It</h2>
+      <h2 id={EDITOR.anchor}>Who Runs It</h2>
+      <Image
+        src={EDITOR.image}
+        alt={EDITOR.name}
+        width={120}
+        height={120}
+        className="float-left mr-4 mt-4 rounded-full object-cover"
+      />
       <p>
-        Articles carry a team byline rather than an individual one. The site is written and
-        edited in-house by a small team, and a piece usually passes through more than one pair
-        of hands before publication, so the byline reflects the group accountable for it. You
-        can see everything published under it on the{" "}
-        <Link href="/author/soccer-365-team">team page</Link>.
+        {SITE.name}{" "}is run by <strong>{EDITOR.name}</strong>, its founder and editor, and
+        published by {OWNER.name}, his company. He trained and played football for 14 years
+        with local clubs in Bosnia and Herzegovina, including in the country&apos;s second tier,
+        and has followed the game closely for 16 years, above all the Premier League and
+        LaLiga, with a particular interest in statistics and tactical analysis.
+      </p>
+      <p className="clear-both">
+        Articles carry the {SITE.name}{" "}team byline because they are produced through the
+        site&apos;s research and drafting process rather than written from scratch by one
+        person. Faris edits every one of them and is accountable for what they say. How that
+        process works, including where AI tools are used and how facts are checked, is set out
+        in our <Link href="/editorial-policy">Editorial Policy</Link>. You can find him on{" "}
+        <a href={EDITOR.sameAs[1]} rel="noopener">LinkedIn</a>.
       </p>
       <p>
         We do not run guest posts sold as advertising, sponsored content presented as
-        editorial, or work bought from content farms. Our{" "}
-        <Link href="/editorial-policy">Editorial Policy</Link>{" "}sets out how we source
-        stories, how rules content is checked against the current Laws of the Game, and what
-        happens when we get something wrong.
+        editorial, or work bought from content farms.
       </p>
 
       <h2>How the Site Is Funded</h2>

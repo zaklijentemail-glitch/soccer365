@@ -1,5 +1,7 @@
 import {
+  EDITOR,
   EXPERTISE,
+  OWNER,
   SITE,
   SOCIAL_FALLBACK_IMAGE,
   SOCIAL_LINKS,
@@ -13,6 +15,8 @@ function absoluteUrl(path: string): string {
   return /^https?:\/\//.test(path) ? path : `${SITE.url}${path}`;
 }
 
+const EDITOR_ID = `${SITE.url}/about#${EDITOR.anchor}`;
+
 export function organizationSchema() {
   return {
     // NewsMediaOrganization is the Organization subtype Google documents for
@@ -25,6 +29,8 @@ export function organizationSchema() {
     description: SITE.description,
     publishingPrinciples: `${SITE.url}/editorial-policy`,
     knowsAbout: EXPERTISE,
+    founder: { "@id": EDITOR_ID },
+    parentOrganization: { "@type": "Organization", name: OWNER.name },
     logo: {
       "@type": "ImageObject",
       url: `${SITE.url}${SITE.logo}`,
@@ -34,6 +40,25 @@ export function organizationSchema() {
     // Derived from SOCIAL_LINKS so the schema can never drift from the
     // profiles actually linked in the footer.
     sameAs: SOCIAL_LINKS.map((s) => s.href),
+  };
+}
+
+/**
+ * The editor as a Person node. It ships in the root graph on every page, so
+ * articles can reference it by @id as their editor.
+ */
+export function editorSchema() {
+  return {
+    "@type": "Person",
+    "@id": EDITOR_ID,
+    name: EDITOR.name,
+    jobTitle: EDITOR.jobTitle,
+    description: EDITOR.bio,
+    image: absoluteUrl(EDITOR.image),
+    url: `${SITE.url}/about#${EDITOR.anchor}`,
+    worksFor: { "@id": `${SITE.url}/#organization` },
+    knowsAbout: ["Premier League", "LaLiga", "Football tactics", "Football statistics"],
+    sameAs: EDITOR.sameAs,
   };
 }
 
@@ -60,7 +85,7 @@ export function websiteSchema() {
 export function rootGraphSchema() {
   return {
     "@context": "https://schema.org",
-    "@graph": [websiteSchema(), organizationSchema()],
+    "@graph": [websiteSchema(), organizationSchema(), editorSchema()],
   };
 }
 
@@ -133,6 +158,7 @@ export function articleSchema(article: Article, url: string) {
     dateModified: article.updated_at,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     author: authorSchema(article.author),
+    editor: { "@id": EDITOR_ID },
     // The full organization node already ships in the root graph on every
     // page, so reference it by @id instead of restating it here.
     publisher: { "@id": `${SITE.url}/#organization` },
