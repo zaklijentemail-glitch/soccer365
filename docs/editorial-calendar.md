@@ -52,7 +52,6 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [ ] Best right-backs in the world 2026 (1,000/24) — premier-league. Slug `best-right-backs-in-the-world`.
 - [ ] Box-to-box midfielder: the role and its best players (390/19) — tactics. Slug `box-to-box-midfielder-explained`.
 - [ ] 4-3-3 formation explained (1,000/37) — tactics. Slug `4-3-3-formation-explained`.
-- [ ] The false 9: how it works and who played it best (590/30) — tactics. Slug `false-9-explained`.
 - [ ] Best wingers in the world 2026 (480/20) — premier-league. Slug `best-wingers-in-the-world`.
 - [ ] Manchester United's 1999 treble (260/35) — premier-league. Slug `manchester-united-1999-treble`.
 - [ ] 3-4-3 formation explained (390/26) — tactics. Slug `3-4-3-formation-explained`.
@@ -63,3 +62,15 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [ ] The No.10, the enganche and the trequartista (number 10 8,100/9 on variant) — tactics. Slug `number-10-enganche-trequartista`.
 - [ ] Best defensive midfielders in the world 2026 (110/20) — premier-league. Slug `best-defensive-midfielders-in-the-world`.
 - [ ] Manchester City's Centurions: the 100-point season (210/24) — premier-league. Slug `manchester-city-centurions-100-points`.
+- [ ] Sócrates: the doctor who captained Brazil (socrates soccer brazil 4,400/22) — world-cup. Slug `socrates-brazil-profile`.
+- [ ] Best left-backs in the world 2026 (good left backs 480/24, best left backs 390/20) — premier-league. Slug `best-left-backs-in-the-world`. Link to the all-time list.
+- [ ] Regista vs mezzala vs carrilero: Italy's midfield roles (mezzala 260/8, regista 90/36, carrileros) — tactics. Slug `regista-mezzala-carrilero-explained`.
+- [ ] Carlos Vela: career, clubs and records (carlos vela 18,100) — world-cup. Slug `carlos-vela-profile`.
+- [ ] Who owns Real Madrid? How the socio model works (owner of real madrid football club 880/25) — rules. Slug `who-owns-real-madrid`.
+- [ ] Premier League's youngest players in 2026-27 (260/38) — premier-league. Slug `premier-league-youngest-players`. Link to the Max Dowman profile.
+- [ ] Best right-backs of all time (480/24) — premier-league. Slug `best-right-backs-of-all-time`. Link to the 2026 list.
+- [ ] The 50+1 rule: why Bundesliga clubs cannot be bought (50 1 rule 140/29) — rules. Slug `50-plus-1-rule-bundesliga`. Link to who-owns-real-madrid.
+- [ ] Guardiola's Barcelona 2008-12: the best team of all time? (barcelona best team of all time 140/23) — champions-league. Slug `guardiola-barcelona-best-team`.
+- [ ] Best goalkeepers in the world 2026 (110) — premier-league. Slug `best-goalkeepers-in-the-world`. Link to sweeper-keeper.
+- [ ] Hamit Altıntop: career and the Bayern years (hamit altintop 320/21) — champions-league. Slug `hamit-altintop-profile`.
+- [ ] Best centre-backs of all time (best center back ever 70/26) — premier-league. Slug `best-centre-backs-of-all-time`. Link to the 2026 list.
