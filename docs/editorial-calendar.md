@@ -48,7 +48,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Types of striker: target man, poacher, false 9, complete forward (striker in soccer 1,600/24) — tactics. Slug `types-of-striker-explained`. — 2026-09-29
 - [x] Best centre-backs in the world 2026 (1,300/23) — premier-league. Slug `best-centre-backs-in-the-world`. — 2026-10-01
 - [x] Arsenal's Invincibles: the 2003-04 unbeaten season (1,300/32) — premier-league. Slug `arsenal-invincibles-unbeaten-season`. — 2026-10-02
-- [ ] 4-4-2 formation explained (1,300/43) — tactics. Slug `4-4-2-formation-explained`.
+- [x] 4-4-2 formation explained (1,300/43) — tactics. Slug `4-4-2-formation-explained`. — 2026-10-03
 - [ ] Full-back vs wing-back vs inverted full-back (wingbacks 590/39, inverted fullback 320/15) — tactics. Slug `fullback-vs-wingback-vs-inverted-fullback`.
 - [ ] Best right-backs in the world 2026 (1,000/24) — premier-league. Slug `best-right-backs-in-the-world`.
 - [ ] Box-to-box midfielder: the role and its best players (390/19) — tactics. Slug `box-to-box-midfielder-explained`.
