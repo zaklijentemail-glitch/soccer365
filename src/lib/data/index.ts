@@ -27,7 +27,10 @@ function toArticle(entry: RawContentEntry): Article {
     title: fm.title,
     excerpt: fm.excerpt,
     content: entry.body,
-    cover_image: fm.coverImage === PLACEHOLDER_COVER ? "" : fm.coverImage,
+    // A real cover photo wins. Without one, a cover spec is drawn by the
+    // /cover route; with neither, the layout falls back to a title panel.
+    cover_image:
+      fm.coverImage !== PLACEHOLDER_COVER ? fm.coverImage : fm.cover ? `/cover/${fm.slug}` : "",
     cover_image_alt: fm.coverImageAlt,
     category,
     tags: fm.tags.map((slug): Tag => ({ id: `tag-${slug}`, slug, name: tagLabel(slug) })),

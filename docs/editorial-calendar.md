@@ -9,8 +9,9 @@ Read by the scheduled publishing agent on every run. Not served by the site.
    source fetched during the run. If a fact cannot be sourced, leave it out.
 3. Write it as `content/guides/<slug>.mdx`, copying the frontmatter shape of
    `content/guides/3-5-2-formation-explained.mdx` (author block verbatim).
-   `date` is the run's current UTC time. `coverImage: "/images/default.jpg"`,
-   `coverImageAlt: "Soccer 365"` (renders a typographic panel).
+   `date` is the run's current UTC time. Keep `coverImage: "/images/default.jpg"` and
+   add a `cover:` block (see **Cover image** below); the site draws the cover from it.
+   `coverImageAlt` must describe that cover in one sentence.
 4. `npm ci && npm run build` must pass. If it fails, fix it or abandon the piece.
 5. Tick the item here, add the commit date, and commit both files to `master` with a
    message explaining why the piece exists (the target query and its volume), then push.
@@ -37,6 +38,45 @@ Read by the scheduled publishing agent on every run. Not served by the site.
   layout; never mention him, first-hand experience or "we watched" claims in article text.
 - Do not edit anything outside `content/guides/`, `docs/editorial-calendar.md`,
   and `src/components/article/` (only if a diagram needs a fix).
+
+## Cover image
+
+Every new piece gets a `cover:` block in its frontmatter, placed just before `featured:`.
+The site renders it at `/cover/<slug>` (1200x675) in the house style: title left, three
+facts right, a formation diagram or a photo behind. Copy this shape:
+
+```yaml
+cover:
+  title: ["The 4-3-3", "formation", "*explained"]   # 2-4 short lines; "*" = yellow line
+  kicker: "Tactics"                                 # small label above the title
+  fontSize: 74                                      # lower it (56-66) for long lines
+  pitch:                                            # EITHER a pitch ...
+    shape: "4-3-3"
+    roles: "GK,LB,CB,CB,RB,CM,DM,CM,LW,ST,RW"
+    highlight: ["LW", "RW"]                         # roles drawn in red
+  # photo: "/images/covers/sources/<slug>.jpg"      # ... OR a photo, with:
+  # photoPosition: "center 20%"
+  # credit: "Photo: <Author>, <Licence>, via Wikimedia Commons"
+  items:                                            # exactly three, short
+    - { icon: "shield", head: "Back four", text: "Two centre-backs, two full-backs" }
+    - { icon: "star", head: "Front three", text: "Two wide forwards and a striker" }
+    - { icon: "target", head: "Pressing", text: "Three forwards press the back line" }
+```
+
+Icons: shield, users, target, run, trophy, clock, ruler, star, list, card, whistle,
+pound, ball, calendar, arrows. Every fact on the cover must also be in the article.
+
+- **Tactics pieces:** use `pitch`, no photo.
+- **Player, club, season and list pieces:** use a photo, and only from Wikimedia
+  Commons with licence **CC0, CC BY or CC BY-SA** (check `LicenseShortName` through the
+  Commons API: `https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url|extmetadata&format=json&titles=File:<name>`).
+  Download it at 1600px wide from
+  `https://commons.wikimedia.org/wiki/Special:FilePath/<name>?width=1600` into
+  `public/images/covers/sources/<slug>.jpg`, set `credit` to the author and licence, and add
+  a row to `public/images/guides/CREDITS.md`. Never use a photo from Google, news sites,
+  agencies (Getty, Reuters, AP), club sites or social media. Skip any photo where a
+  trademark or logo other than kit badges dominates the frame. If no suitable Commons
+  photo exists, use a pitch or leave out both `pitch` and `photo`.
 
 ## Queue
 

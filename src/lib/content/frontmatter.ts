@@ -12,6 +12,33 @@ const authorSchema = z.object({
   avatar: z.string().optional(),
 });
 
+/**
+ * A generated cover, drawn by /cover/[slug] when the article has no cover
+ * photograph of its own. Title lines starting with "*" are set in the accent
+ * colour. Either a pitch diagram or a licensed photo fills the right side.
+ */
+const coverSchema = z.object({
+  title: z.array(z.string()).min(1).max(4),
+  kicker: z.string().optional(),
+  fontSize: z.number().optional(),
+  photo: z.string().optional(),
+  photoPosition: z.string().optional(),
+  credit: z.string().optional(),
+  pitch: z
+    .object({
+      shape: z.string(),
+      roles: z.string(),
+      lift: z.record(z.string(), z.number()).optional(),
+      highlight: z.array(z.string()).optional(),
+    })
+    .optional(),
+  items: z
+    .array(z.object({ icon: z.string(), head: z.string(), text: z.string() }))
+    .length(3),
+});
+
+export type CoverSpec = z.infer<typeof coverSchema>;
+
 export const frontmatterSchema = z.object({
   title: z.string(),
   slug: z.string(),
@@ -24,6 +51,7 @@ export const frontmatterSchema = z.object({
   tags: z.array(z.string()).default([]),
   coverImage: z.string(),
   coverImageAlt: z.string(),
+  cover: coverSchema.optional(),
   featured: z.boolean().default(false),
   draft: z.boolean().default(false),
   /**
