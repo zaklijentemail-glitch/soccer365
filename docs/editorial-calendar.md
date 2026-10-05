@@ -50,7 +50,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Arsenal's Invincibles: the 2003-04 unbeaten season (1,300/32) — premier-league. Slug `arsenal-invincibles-unbeaten-season`. — 2026-10-02
 - [x] 4-4-2 formation explained (1,300/43) — tactics. Slug `4-4-2-formation-explained`. — 2026-10-03
 - [x] Full-back vs wing-back vs inverted full-back (wingbacks 590/39, inverted fullback 320/15) — tactics. Slug `fullback-vs-wingback-vs-inverted-fullback`. — 2026-10-04
-- [ ] Best right-backs in the world 2026 (1,000/24) — premier-league. Slug `best-right-backs-in-the-world`.
+- [x] Best right-backs in the world 2026 (1,000/24) — premier-league. Slug `best-right-backs-in-the-world`. — 2026-10-05
 - [ ] Box-to-box midfielder: the role and its best players (390/19) — tactics. Slug `box-to-box-midfielder-explained`.
 - [ ] 4-3-3 formation explained (1,000/37) — tactics. Slug `4-3-3-formation-explained`.
 - [ ] Best wingers in the world 2026 (480/20) — premier-league. Slug `best-wingers-in-the-world`.
