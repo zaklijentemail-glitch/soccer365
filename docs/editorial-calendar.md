@@ -93,7 +93,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Best right-backs in the world 2026 (1,000/24) — premier-league. Slug `best-right-backs-in-the-world`. — 2026-10-05
 - [x] Box-to-box midfielder: the role and its best players (390/19) — tactics. Slug `box-to-box-midfielder-explained`. — 2026-10-06
 - [x] 4-3-3 formation explained (1,000/37) — tactics. Slug `4-3-3-formation-explained`. — 2026-10-07
-- [ ] Best wingers in the world 2026 (480/20) — premier-league. Slug `best-wingers-in-the-world`.
+- [x] Best wingers in the world 2026 (480/20) — premier-league. Slug `best-wingers-in-the-world`. — 2026-10-08
 - [ ] Manchester United's 1999 treble (260/35) — premier-league. Slug `manchester-united-1999-treble`.
 - [ ] 3-4-3 formation explained (390/26) — tactics. Slug `3-4-3-formation-explained`.
 - [ ] Centre-back: the role, the types and what makes a great one (880/40) — tactics. Slug `centre-back-role-explained`.
