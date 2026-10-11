@@ -96,7 +96,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Best wingers in the world 2026 (480/20) — premier-league. Slug `best-wingers-in-the-world`. — 2026-10-08
 - [x] Manchester United's 1999 treble (260/35) — premier-league. Slug `manchester-united-1999-treble`. — 2026-10-09
 - [x] 3-4-3 formation explained (390/26) — tactics. Slug `3-4-3-formation-explained`. — 2026-10-10
-- [ ] Centre-back: the role, the types and what makes a great one (880/40) — tactics. Slug `centre-back-role-explained`.
+- [x] Centre-back: the role, the types and what makes a great one (880/40) — tactics. Slug `centre-back-role-explained`. — 2026-10-11
 - [ ] Best left-backs of all time (480/22) — premier-league. Slug `best-left-backs-of-all-time`.
 - [ ] Sweeper keeper: how the role changed goalkeeping (390/23) — tactics. Slug `sweeper-keeper-explained`.
 - [ ] Football formations explained: every common shape compared (hub; link every formation piece) — tactics. Slug `football-formations-explained`.
