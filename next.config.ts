@@ -41,6 +41,10 @@ const removedNews: Record<string, string> = {
   "jonathan-david-atletico-fitness-criticism-griezmann": "/news",
   "juventus-squad-list-parma-yildiz-mckennie-out": "/news",
   "messi-retires-argentina-national-team": "/news",
+  // Removed 2026-10-12, the last of the noindexed restatements.
+  "arsenal-lautaro-martinez-approach-alvarez-collapse": "/news",
+  "arsenal-sign-illan-meslier-leeds": "/news",
+  "manchester-city-sign-jeremy-monga": "/guides/jeremy-monga-profile",
 };
 
 const nextConfig: NextConfig = {

@@ -170,6 +170,16 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
           />
         )}
         {!photo && cover.pitch && <Pitch pitch={cover.pitch} />}
+        {!photo && !cover.pitch && cover.bigNumber && (
+          <div style={{ position: "absolute", left: 600, top: 0, width: 310, height: H, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ fontFamily: "Oswald", fontWeight: 700, fontSize: cover.bigNumber.value.length <= 2 ? 180 : cover.bigNumber.value.length <= 4 ? 118 : 92, color: "#f5c518", lineHeight: 1 }}>
+              {cover.bigNumber.value}
+            </div>
+            <div style={{ fontFamily: "Inter", fontSize: 20, color: "#cfd8d3", marginTop: 12, textAlign: "center", width: 300, display: "flex", justifyContent: "center" }}>
+              {cover.bigNumber.caption}
+            </div>
+          </div>
+        )}
         {photo && (
           <div style={{ position: "absolute", left: 380, top: 0, width: 460, height: H, display: "flex", backgroundImage: "linear-gradient(90deg, #0b0f10 0%, rgba(11,15,16,0.85) 35%, rgba(11,15,16,0) 100%)" }} />
         )}

@@ -24,6 +24,8 @@ const coverSchema = z.object({
   photo: z.string().optional(),
   photoPosition: z.string().optional(),
   credit: z.string().optional(),
+  /** A single headline figure ("+3", "8 SEC", "36") with a short caption. */
+  bigNumber: z.object({ value: z.string(), caption: z.string() }).optional(),
   pitch: z
     .object({
       shape: z.string(),

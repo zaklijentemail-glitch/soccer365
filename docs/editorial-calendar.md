@@ -67,6 +67,9 @@ Icons: shield, users, target, run, trophy, clock, ruler, star, list, card, whist
 pound, ball, calendar, arrows. Every fact on the cover must also be in the article.
 
 - **Tactics pieces:** use `pitch`, no photo.
+- **Rules and money pieces** with one key figure: use
+  `bigNumber: { value: "+3", caption: "the board shows a minimum" }` (value of 1-6
+  characters, no photo, no pitch). The figure must appear in the article.
 - **Player, club, season and list pieces:** use a photo, and only from Wikimedia
   Commons with licence **CC0, CC BY or CC BY-SA** (check `LicenseShortName` through the
   Commons API: `https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url|extmetadata&format=json&titles=File:<name>`).
