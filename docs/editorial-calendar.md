@@ -101,7 +101,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] 3-4-3 formation explained (390/26) — tactics. Slug `3-4-3-formation-explained`. — 2026-10-10
 - [x] Centre-back: the role, the types and what makes a great one (880/40) — tactics. Slug `centre-back-role-explained`. — 2026-10-11
 - [x] Best left-backs of all time (480/22) — premier-league. Slug `best-left-backs-of-all-time`. — 2026-10-12
-- [ ] Sweeper keeper: how the role changed goalkeeping (390/23) — tactics. Slug `sweeper-keeper-explained`.
+- [x] Sweeper keeper: how the role changed goalkeeping (390/23) — tactics. Slug `sweeper-keeper-explained`. — 2026-10-13
 - [ ] Football formations explained: every common shape compared (hub; link every formation piece) — tactics. Slug `football-formations-explained`.
 - [ ] The No.10, the enganche and the trequartista (number 10 8,100/9 on variant) — tactics. Slug `number-10-enganche-trequartista`.
 - [ ] Best defensive midfielders in the world 2026 (110/20) — premier-league. Slug `best-defensive-midfielders-in-the-world`.
