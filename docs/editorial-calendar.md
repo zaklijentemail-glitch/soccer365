@@ -103,7 +103,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Best left-backs of all time (480/22) — premier-league. Slug `best-left-backs-of-all-time`. — 2026-10-12
 - [x] Sweeper keeper: how the role changed goalkeeping (390/23) — tactics. Slug `sweeper-keeper-explained`. — 2026-10-13
 - [x] Football formations explained: every common shape compared (hub; link every formation piece) — tactics. Slug `football-formations-explained`. — 2026-10-14
-- [ ] The No.10, the enganche and the trequartista (number 10 8,100/9 on variant) — tactics. Slug `number-10-enganche-trequartista`.
+- [x] The No.10, the enganche and the trequartista (number 10 8,100/9 on variant) — tactics. Slug `number-10-enganche-trequartista`. — 2026-10-15
 - [ ] Best defensive midfielders in the world 2026 (110/20) — premier-league. Slug `best-defensive-midfielders-in-the-world`.
 - [ ] Manchester City's Centurions: the 100-point season (210/24) — premier-league. Slug `manchester-city-centurions-100-points`.
 - [ ] Sócrates: the doctor who captained Brazil (socrates soccer brazil 4,400/22) — world-cup. Slug `socrates-brazil-profile`.
