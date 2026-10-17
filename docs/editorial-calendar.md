@@ -105,7 +105,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Football formations explained: every common shape compared (hub; link every formation piece) — tactics. Slug `football-formations-explained`. — 2026-10-14
 - [x] The No.10, the enganche and the trequartista (number 10 8,100/9 on variant) — tactics. Slug `number-10-enganche-trequartista`. — 2026-10-15
 - [x] Best defensive midfielders in the world 2026 (110/20) — premier-league. Slug `best-defensive-midfielders-in-the-world`. — 2026-10-16
-- [ ] Manchester City's Centurions: the 100-point season (210/24) — premier-league. Slug `manchester-city-centurions-100-points`.
+- [x] Manchester City's Centurions: the 100-point season (210/24) — premier-league. Slug `manchester-city-centurions-100-points`. — 2026-10-17
 - [ ] Sócrates: the doctor who captained Brazil (socrates soccer brazil 4,400/22) — world-cup. Slug `socrates-brazil-profile`.
 - [ ] Best left-backs in the world 2026 (good left backs 480/24, best left backs 390/20) — premier-league. Slug `best-left-backs-in-the-world`. Link to the all-time list.
 - [ ] Regista vs mezzala vs carrilero: Italy's midfield roles (mezzala 260/8, regista 90/36, carrileros) — tactics. Slug `regista-mezzala-carrilero-explained`.
