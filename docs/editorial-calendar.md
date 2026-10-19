@@ -107,7 +107,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Best defensive midfielders in the world 2026 (110/20) — premier-league. Slug `best-defensive-midfielders-in-the-world`. — 2026-10-16
 - [x] Manchester City's Centurions: the 100-point season (210/24) — premier-league. Slug `manchester-city-centurions-100-points`. — 2026-10-17
 - [x] Sócrates: the doctor who captained Brazil (socrates soccer brazil 4,400/22) — world-cup. Slug `socrates-brazil-profile`. — 2026-10-18
-- [ ] Best left-backs in the world 2026 (good left backs 480/24, best left backs 390/20) — premier-league. Slug `best-left-backs-in-the-world`. Link to the all-time list.
+- [x] Best left-backs in the world 2026 (good left backs 480/24, best left backs 390/20) — premier-league. Slug `best-left-backs-in-the-world`. Link to the all-time list. — 2026-10-19
 - [ ] Regista vs mezzala vs carrilero: Italy's midfield roles (mezzala 260/8, regista 90/36, carrileros) — tactics. Slug `regista-mezzala-carrilero-explained`.
 - [ ] Carlos Vela: career, clubs and records (carlos vela 18,100) — world-cup. Slug `carlos-vela-profile`.
 - [ ] Who owns Real Madrid? How the socio model works (owner of real madrid football club 880/25) — rules. Slug `who-owns-real-madrid`.
