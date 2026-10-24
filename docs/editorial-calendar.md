@@ -112,7 +112,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Carlos Vela: career, clubs and records (carlos vela 18,100) — world-cup. Slug `carlos-vela-profile`. — 2026-10-21
 - [x] Who owns Real Madrid? How the socio model works (owner of real madrid football club 880/25) — rules. Slug `who-owns-real-madrid`. — 2026-10-22
 - [x] Premier League's youngest players in 2026-27 (260/38) — premier-league. Slug `premier-league-youngest-players`. Link to the Max Dowman profile. — 2026-10-23
-- [ ] Best right-backs of all time (480/24) — premier-league. Slug `best-right-backs-of-all-time`. Link to the 2026 list.
+- [x] Best right-backs of all time (480/24) — premier-league. Slug `best-right-backs-of-all-time`. Link to the 2026 list. — 2026-10-24
 - [ ] The 50+1 rule: why Bundesliga clubs cannot be bought (50 1 rule 140/29) — rules. Slug `50-plus-1-rule-bundesliga`. Link to who-owns-real-madrid.
 - [ ] Guardiola's Barcelona 2008-12: the best team of all time? (barcelona best team of all time 140/23) — champions-league. Slug `guardiola-barcelona-best-team`.
 - [ ] Best goalkeepers in the world 2026 (110) — premier-league. Slug `best-goalkeepers-in-the-world`. Link to sweeper-keeper.
