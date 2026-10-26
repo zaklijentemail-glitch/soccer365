@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/results" },
+  // Fixture data from an API, useful to readers but not original content;
+  // kept out of the index so it does not count against the site's quality.
+  robots: { index: false, follow: true },
   openGraph: {
     title: `${TITLE} | Soccer 365`,
     description: DESCRIPTION,

@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
 import { getAllTags, getTagBySlug, getNewsByTag } from "@/lib/data";
-import { MIN_ARTICLES_FOR_INDEXING } from "@/lib/constants";
 
 export async function generateStaticParams() {
   const tags = await getAllTags();
@@ -18,17 +17,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const tag = await getTagBySlug(slug);
   if (!tag) return {};
-  // A one- or two-article archive has nothing to offer a searcher, so keep it
-  // out of the index while leaving it crawlable for link discovery. Spreading
-  // the key in only when it applies matters: a `robots: undefined` present on
-  // the object overrides the root layout's directives instead of inheriting
-  // them, which silently stripped max-image-preview:large from every tag page.
-  const thin = tag.articleCount < MIN_ARTICLES_FOR_INDEXING;
+  // Tag archives are lists of headlines with no text of their own, and after
+  // a third AdSense "low value content" rejection they were a quarter of the
+  // sitemap. All of them stay out of the index; they remain crawlable so the
+  // links on them still lead somewhere.
 
   return {
     title: `${tag.name} News & Articles`,
     description: `All Soccer 365 articles tagged ${tag.name}.`,
-    ...(thin ? { robots: { index: false, follow: true } } : {}),
+    robots: { index: false, follow: true },
     alternates: { canonical: `/tag/${tag.slug}` },
   };
 }

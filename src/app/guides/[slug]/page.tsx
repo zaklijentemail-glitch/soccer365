@@ -6,6 +6,7 @@ import { articleSchema } from "@/lib/seo/jsonld";
 import JsonLd from "@/components/seo/JsonLd";
 import ArticleHeader from "@/components/article/ArticleHeader";
 import ArticleBody from "@/components/article/ArticleBody";
+import EditorsTake from "@/components/article/EditorsTake";
 import ShareButtons from "@/components/article/ShareButtons";
 import TagList from "@/components/article/TagList";
 import RelatedArticles from "@/components/article/RelatedArticles";
@@ -79,6 +80,7 @@ export default async function GuideArticlePage({
         </div>
 
         <ArticleBody content={article.content} />
+        {article.editors_take && <EditorsTake text={article.editors_take} />}
 
         {article.faq && <FaqAccordion items={article.faq} />}
 

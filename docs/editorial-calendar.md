@@ -36,6 +36,8 @@ Read by the scheduled publishing agent on every run. Not served by the site.
 - Never invent quotes, stats, transfer fees or dates. Never name a writer; the byline
   is the Soccer 365 team. The site-wide editor credit (Faris Zenunović) is added by the
   layout; never mention him, first-hand experience or "we watched" claims in article text.
+- **Never write or edit `editorsTake`.** It is the editor's own view, added by him after he
+  reads the piece. A take written by anyone else would be a false claim about who wrote it.
 - Do not edit anything outside `content/guides/`, `docs/editorial-calendar.md`,
   and `src/components/article/` (only if a diagram needs a fix).
 
@@ -118,3 +120,15 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [ ] Best goalkeepers in the world 2026 (110) — premier-league. Slug `best-goalkeepers-in-the-world`. Link to sweeper-keeper.
 - [ ] Hamit Altıntop: career and the Bayern years (hamit altintop 320/21) — champions-league. Slug `hamit-altintop-profile`.
 - [ ] Best centre-backs of all time (best center back ever 70/26) — premier-league. Slug `best-centre-backs-of-all-time`. Link to the 2026 list.
+- [ ] Illan Meslier: career, clubs and records (illan meslier 1,300/45, meslier 590/49) — premier-league. Slug `illan-meslier-profile`.
+- [ ] Michael Carrick: the player and the coach (carrick footballer 590/29) — premier-league. Slug `michael-carrick-profile`.
+- [ ] What was a half-back? Football's old positions and what became of them (fullback vs halfback 590/25) — tactics. Slug `half-back-old-football-positions`. Link to the formations hub.
+- [ ] Promotion and relegation in Liga MX explained (ascenso y descenso liga mx 210/27) — rules. Slug `liga-mx-promotion-relegation-explained`.
+- [ ] 2027 Women's World Cup: hosts, dates and format (2027 womens world cup 320/41) — world-cup. Slug `womens-world-cup-2027-format`.
+- [ ] Andy Cole and Dwight Yorke: the 1999 strike partnership (70/22) — premier-league. Slug `andy-cole-dwight-yorke-partnership`. Link to the 1999 treble guide.
+- [ ] Baresi and Maldini: how Milan's back four worked (baresi and maldini 70/21) — tactics. Slug `baresi-maldini-milan-defence`.
+- [ ] Academy contracts: scholarships and first professional deals (academy contracts 70/12) — rules. Slug `academy-contracts-scholarships-explained`. Link to the Dowman and Monga profiles.
+- [ ] Can football clubs swap players? Swap deals explained (can you trade players in soccer 50/22) — transfers. Slug `swap-deals-explained`.
+- [ ] How the Ballon d'Or is decided (ballon d or how to win 40/27) — rules. Slug `how-the-ballon-dor-is-decided`.
+- [ ] Premier League relegation rules and tiebreakers (premier league relegation rules 140/50) — rules. Slug `premier-league-relegation-rules`.
+- [ ] Best strikers in the world 2026 — premier-league. Slug `best-strikers-in-the-world`. Link to types-of-striker.

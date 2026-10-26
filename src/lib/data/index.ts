@@ -47,6 +47,7 @@ function toArticle(entry: RawContentEntry): Article {
     is_featured: fm.featured,
     noindex: fm.noindex,
     faq: fm.faq,
+    editors_take: fm.editorsTake,
     meta_title: fm.metaTitle,
     meta_description: fm.metaDescription ?? fm.description,
   };

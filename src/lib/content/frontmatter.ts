@@ -54,6 +54,8 @@ export const frontmatterSchema = z.object({
   coverImage: z.string(),
   coverImageAlt: z.string(),
   cover: coverSchema.optional(),
+  /** The editor's own view, written by him after reading the piece. */
+  editorsTake: z.string().optional(),
   featured: z.boolean().default(false),
   draft: z.boolean().default(false),
   /**

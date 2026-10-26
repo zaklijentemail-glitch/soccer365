@@ -56,6 +56,8 @@ export interface Article {
   /** Readable and linked, but kept out of the index, sitemap and homepage. */
   noindex: boolean;
   faq?: FaqItem[];
+  /** The editor's own view on the piece, when he has written one. */
+  editors_take?: string;
   meta_title?: string;
   meta_description?: string;
 }
