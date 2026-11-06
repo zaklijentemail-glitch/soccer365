@@ -120,7 +120,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Best goalkeepers in the world 2026 (110) — premier-league. Slug `best-goalkeepers-in-the-world`. Link to sweeper-keeper. — 2026-10-28
 - [x] Hamit Altıntop: career and the Bayern years (hamit altintop 320/21) — champions-league. Slug `hamit-altintop-profile`. — 2026-11-02
 - [x] Best centre-backs of all time (best center back ever 70/26) — premier-league. Slug `best-centre-backs-of-all-time`. Link to the 2026 list. — 2026-11-04
-- [ ] Illan Meslier: career, clubs and records (illan meslier 1,300/45, meslier 590/49) — premier-league. Slug `illan-meslier-profile`.
+- [x] Illan Meslier: career, clubs and records (illan meslier 1,300/45, meslier 590/49) — premier-league. Slug `illan-meslier-profile`. — 2026-11-06
 - [ ] Michael Carrick: the player and the coach (carrick footballer 590/29) — premier-league. Slug `michael-carrick-profile`.
 - [ ] What was a half-back? Football's old positions and what became of them (fullback vs halfback 590/25) — tactics. Slug `half-back-old-football-positions`. Link to the formations hub.
 - [ ] Promotion and relegation in Liga MX explained (ascenso y descenso liga mx 210/27) — rules. Slug `liga-mx-promotion-relegation-explained`.
