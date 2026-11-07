@@ -1,6 +1,10 @@
 import { SITE } from "@/lib/constants";
 import { getRecentNewsForNewsSitemap } from "@/lib/data";
 
+// The news sitemap only lists the last 48 hours, so it has to age between
+// deploys: regenerate at most hourly instead of on every request.
+export const revalidate = 3600;
+
 function escapeXml(value: string) {
   return value
     .replace(/&/g, "&amp;")

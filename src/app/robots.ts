@@ -27,10 +27,35 @@ export default function robots(): MetadataRoute.Robots {
     "CCBot",
   ];
 
+  // Crawlers that bring no readers: model-training collectors and SEO
+  // scrapers. They were a large share of the site's bandwidth and function
+  // time. Search crawlers (Googlebot, Bingbot, AdSense's Mediapartners-Google,
+  // OAI-SearchBot, PerplexityBot) stay allowed above.
+  const blockedAgents = [
+    "GPTBot",
+    "CCBot",
+    "ClaudeBot",
+    "Bytespider",
+    "meta-externalagent",
+    "Amazonbot",
+    "PetalBot",
+    "AhrefsBot",
+    "MJ12bot",
+    "DotBot",
+    "BLEXBot",
+    "DataForSeoBot",
+    "Barkrowler",
+    "SeekportBot",
+    "ImagesiftBot",
+  ];
+
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow },
-      ...namedAgents.map((userAgent) => ({ userAgent, allow: "/", disallow })),
+      ...namedAgents
+        .filter((userAgent) => !blockedAgents.includes(userAgent))
+        .map((userAgent) => ({ userAgent, allow: "/", disallow })),
+      ...blockedAgents.map((userAgent) => ({ userAgent, disallow: "/" })),
     ],
     sitemap: `${SITE.url}/sitemap.xml`,
     host: SITE.url,

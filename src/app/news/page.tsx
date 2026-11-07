@@ -11,13 +11,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/news" },
 };
 
-export default async function NewsListingPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ sort?: string }>;
-}) {
-  const { sort: sortParam } = await searchParams;
-  const sort: SortOrder = sortParam === "oldest" ? "oldest" : "newest";
+export default async function NewsListingPage() {
+  // Newest first only. A ?sort= variant made every listing render per
+  // request and gave crawlers a duplicate of each archive to fetch.
+  const sort: SortOrder = "newest";
 
   const [result, categories] = await Promise.all([
     getNews({ page: 1, limit: 12, sort }),
@@ -33,7 +30,6 @@ export default async function NewsListingPage({
         result={result}
         basePath="/news"
         categoryFilter={{ categories }}
-        sort={sort}
       />
     </Container>
   );

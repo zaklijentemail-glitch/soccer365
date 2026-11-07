@@ -1,6 +1,10 @@
 import { SITE } from "@/lib/constants";
 import { getGuides, getNews } from "@/lib/data";
 
+// Built once per deploy: everything it lists comes from the repo, so a
+// request-time render only spends function time on bots.
+export const dynamic = "force-static";
+
 /**
  * llms.txt: a plain-text index of the site aimed at language models, in the
  * format proposed at llmstxt.org.

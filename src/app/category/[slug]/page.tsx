@@ -40,14 +40,13 @@ export async function generateMetadata({
 
 export default async function CategoryPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ sort?: string }>;
 }) {
   const { slug } = await params;
-  const { sort: sortParam } = await searchParams;
-  const sort: SortOrder = sortParam === "oldest" ? "oldest" : "newest";
+  // Newest first only. A ?sort= variant made every listing render per
+  // request and gave crawlers a duplicate of each archive to fetch.
+  const sort: SortOrder = "newest";
 
   const category = await getCategoryBySlugAsync(slug);
   if (!category) notFound();
@@ -66,7 +65,6 @@ export default async function CategoryPage({
         result={result}
         basePath={`/category/${category.slug}`}
         categoryFilter={{ categories, activeSlug: category.slug }}
-        sort={sort}
       />
     </Container>
   );

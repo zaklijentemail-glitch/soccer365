@@ -1,5 +1,9 @@
 import { ADSENSE_PUBLISHER_ID } from "@/lib/constants";
 
+// Built once per deploy: everything it lists comes from the repo, so a
+// request-time render only spends function time on bots.
+export const dynamic = "force-static";
+
 /**
  * Google requires the publisher line to be live before it will serve ads on
  * the domain. The ID is issued when the AdSense account is created, so this

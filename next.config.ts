@@ -63,16 +63,13 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "picsum.photos",
-      },
-      {
-        protocol: "https",
-        hostname: "www.mancity.com",
-      },
-    ],
+    // Covers and photos never change at the same URL, so an optimised copy can
+    // live a month instead of being rebuilt every few hours for each crawler.
+    minimumCacheTTL: 2678400,
+    // Content is at most 1200px wide; the 1920-3840 defaults only ever served
+    // oversized files, mostly to bots reading the srcset.
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [48, 96, 128, 256, 384],
   },
 };
 

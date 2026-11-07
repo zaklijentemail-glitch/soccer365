@@ -5,6 +5,12 @@ import ArticleListing from "@/components/listing/ArticleListing";
 import { getNews, getCategories } from "@/lib/data";
 import type { SortOrder } from "@/lib/data";
 
+// Rendered on first request, then cached until the next deploy; content only
+// changes when the repo does, so there is nothing to recompute per request.
+export async function generateStaticParams() {
+  return [];
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,14 +25,13 @@ export async function generateMetadata({
 
 export default async function NewsListingPagedPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ page: string }>;
-  searchParams: Promise<{ sort?: string }>;
 }) {
   const { page } = await params;
-  const { sort: sortParam } = await searchParams;
-  const sort: SortOrder = sortParam === "oldest" ? "oldest" : "newest";
+  // Newest first only. A ?sort= variant made every listing render per
+  // request and gave crawlers a duplicate of each archive to fetch.
+  const sort: SortOrder = "newest";
 
   const pageNum = Number(page);
   if (!Number.isInteger(pageNum) || pageNum < 2) notFound();
@@ -46,7 +51,6 @@ export default async function NewsListingPagedPage({
         result={result}
         basePath="/news"
         categoryFilter={{ categories }}
-        sort={sort}
       />
     </Container>
   );

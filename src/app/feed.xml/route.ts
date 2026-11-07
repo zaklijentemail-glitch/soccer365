@@ -1,6 +1,10 @@
 import { SITE } from "@/lib/constants";
 import { getLatestNews } from "@/lib/data";
 
+// Built once per deploy: everything it lists comes from the repo, so a
+// request-time render only spends function time on bots.
+export const dynamic = "force-static";
+
 function escapeXml(value: string) {
   return value
     .replace(/&/g, "&amp;")

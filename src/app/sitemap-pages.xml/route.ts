@@ -1,5 +1,6 @@
 import { MIN_ARTICLES_FOR_INDEXING, POLICY_UPDATED, SITE } from "@/lib/constants";
 import {
+
   getAllArticleSlugsWithType,
   getCategories,
   getCategoryArticleCounts,
@@ -7,6 +8,10 @@ import {
   getAllAuthors,
   getSitemapLastmods,
 } from "@/lib/data";
+
+// Built once per deploy: everything it lists comes from the repo, so a
+// request-time render only spends function time on bots.
+export const dynamic = "force-static";
 
 /** The legal pages carry a hand-maintained revision date rather than a build date. */
 const policyLastmod = new Date(POLICY_UPDATED).toISOString();

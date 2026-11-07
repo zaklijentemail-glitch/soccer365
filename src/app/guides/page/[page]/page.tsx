@@ -4,6 +4,12 @@ import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
 import { getGuides } from "@/lib/data";
 
+// Rendered on first request, then cached until the next deploy; content only
+// changes when the repo does, so there is nothing to recompute per request.
+export async function generateStaticParams() {
+  return [];
+}
+
 export async function generateMetadata({
   params,
 }: {
