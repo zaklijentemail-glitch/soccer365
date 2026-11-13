@@ -123,7 +123,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Illan Meslier: career, clubs and records (illan meslier 1,300/45, meslier 590/49) — premier-league. Slug `illan-meslier-profile`. — 2026-11-06
 - [x] Michael Carrick: the player and the coach (carrick footballer 590/29) — premier-league. Slug `michael-carrick-profile`. — 2026-11-09
 - [x] What was a half-back? Football's old positions and what became of them (fullback vs halfback 590/25) — tactics. Slug `half-back-old-football-positions`. Link to the formations hub. — 2026-11-11
-- [ ] Promotion and relegation in Liga MX explained (ascenso y descenso liga mx 210/27) — rules. Slug `liga-mx-promotion-relegation-explained`.
+- [x] Promotion and relegation in Liga MX explained (ascenso y descenso liga mx 210/27) — rules. Slug `liga-mx-promotion-relegation-explained`. — 2026-11-13
 - [ ] 2027 Women's World Cup: hosts, dates and format (2027 womens world cup 320/41) — world-cup. Slug `womens-world-cup-2027-format`.
 - [ ] Andy Cole and Dwight Yorke: the 1999 strike partnership (70/22) — premier-league. Slug `andy-cole-dwight-yorke-partnership`. Link to the 1999 treble guide.
 - [ ] Baresi and Maldini: how Milan's back four worked (baresi and maldini 70/21) — tactics. Slug `baresi-maldini-milan-defence`.
