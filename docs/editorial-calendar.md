@@ -148,24 +148,39 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] 2027 Women's World Cup: hosts, dates and format (2027 womens world cup 320/41) — world-cup. Slug `womens-world-cup-2027-format`. — 2026-11-16
 - [ ] Best American soccer players of all time and now (best american soccer players 2,400/26, best usmnt players 170/32) — world-cup. Slug `best-american-soccer-players`.
 - [ ] Highest paid MLS players 2026 (590/35) — rules. Slug `highest-paid-mls-players`. Source salaries from the MLS Players Association release only.
+- [ ] Best soccer players in the world right now (5,400/31) — premier-league. Slug `best-soccer-players-in-the-world`. US phrasing in the title. Link to every position list and /rankings.
+- [ ] Best soccer movies of all time (1,600/9) — world-cup. Slug `best-soccer-movies`. Year, director and one line on why each belongs; no plot spoilers.
+- [ ] MLS expansion teams: every new club and when it joined (1,300/33) — rules. Slug `mls-expansion-teams`. Source from MLS official announcements.
 - [ ] Best strikers in the world 2026 — premier-league. Slug `best-strikers-in-the-world`. Link to types-of-striker.
-- [ ] Best goalkeepers of all time (3,600/26) — premier-league. Slug `best-goalkeepers-of-all-time`. Link to the 2026 list and sweeper-keeper.
-- [ ] Best midfielders of all time (2,400/26) — premier-league. Slug `best-midfielders-of-all-time`.
+- [ ] Best goalkeepers of all time (3,600/26; also "best soccer goalies of all time" 480/35, use "goalies" in the H1 or first paragraph) — premier-league. Slug `best-goalkeepers-of-all-time`. Link to the 2026 list and sweeper-keeper.
+- [ ] Best soccer documentaries (720/13) — world-cup. Slug `best-soccer-documentaries`.
+- [ ] MLS playoffs format explained (720/22) — rules. Slug `mls-playoffs-format`. Current season format from MLS official sources.
+- [ ] Best midfielders of all time (2,400/26; also "best soccer midfielders of all time" 260/21) — premier-league. Slug `best-midfielders-of-all-time`.
+- [ ] Best soccer defenders of all time (1,000/25) — premier-league. Slug `best-soccer-defenders-of-all-time`. Link to the centre-back, right-back and left-back all-time lists; pick across positions, do not repeat their order.
+- [ ] American soccer players in Europe and the Premier League 2026 (american soccer players in europe 260/23, american players in the premier league 260/16) — transfers. Slug `american-soccer-players-in-europe`. Link to best-american-soccer-players.
+- [ ] Best MLS players 2026 (best mls players 2026 70/32) — rules. Slug `best-mls-players`. US audience; link to highest-paid-mls-players and liga-mx guide.
+- [ ] Highest paid soccer coaches in the world (260/30) — transfers. Slug `highest-paid-soccer-coaches`.
+- [ ] NWSL salary cap explained (260/20) — rules. Slug `nwsl-salary-cap`. Figures from NWSL official releases only.
 - [ ] Best strikers of all time (1,900/32) — premier-league. Slug `best-strikers-of-all-time`. Link to types-of-striker and the 2026 strikers list.
 - [ ] Best soccer teams of all time (1,000/19) — champions-league. Slug `best-soccer-teams-of-all-time`. Link to Invincibles, 1999 treble, Centurions, Guardiola's Barcelona.
 - [ ] Best football managers of all time (1,000/25) — premier-league. Slug `best-football-managers-of-all-time`.
+- [ ] Best MLS stadiums (210/6) — rules. Slug `best-mls-stadiums`. Capacities from club or MLS sources.
 - [ ] Best left wingers in the world 2026 (880/25) — premier-league. Slug `best-left-wingers-in-the-world`. Link to the wingers list.
 - [ ] Best right wingers in the world 2026 (590/21) — premier-league. Slug `best-right-wingers-in-the-world`. Link to the wingers list.
 - [ ] Best World Cup teams of all time (4,400/39) — world-cup. Slug `best-world-cup-teams`.
+- [ ] Best women soccer players in the world 2026 (170/22) — world-cup. Slug `best-women-soccer-players-in-the-world`.
 - [ ] Tallest soccer players in the world (590/25) — premier-league. Slug `tallest-soccer-players`.
 - [ ] Biggest stadiums in the world (12,100/44) — world-cup. Slug `biggest-stadiums-in-the-world`. Capacities from the venue or governing body.
 - [ ] Best soccer games of all time (480/24) — world-cup. Slug `best-soccer-games-of-all-time`.
+- [ ] MLS Cup winners: every champion since 1996 (170/34) — rules. Slug `mls-cup-winners-list`.
 - [ ] Best defensive midfielders of all time (390/24) — premier-league. Slug `best-defensive-midfielders-of-all-time`. Link to the 2026 list.
 - [ ] Highest paid soccer players in the world 2026 (2,400/48) — transfers. Slug `highest-paid-soccer-players`.
 - [ ] Best wingers of all time (260/17) — premier-league. Slug `best-wingers-of-all-time`.
+- [ ] Best NWSL players 2026 (110/23) — rules. Slug `best-nwsl-players`.
 - [ ] Fastest soccer players in the world (260/27) — premier-league. Slug `fastest-soccer-players`. Only speeds published by a league, club or tracking provider.
 - [ ] Best Premier League defenders 2026 (210/21) — premier-league. Slug `best-premier-league-defenders`.
 - [ ] Best young goalkeepers in the world (210/15) — premier-league. Slug `best-young-goalkeepers`.
+- [ ] Best MLS goalkeepers 2026 (110/29) — rules. Slug `best-mls-goalkeepers`. Link to best-mls-players.
 - [ ] Best young strikers in the world (210/24) — premier-league. Slug `best-young-strikers`.
 - [ ] Most assists of all time (210/19) — premier-league. Slug `most-assists-of-all-time`.
 - [ ] Best Argentine players of all time (210/24) — world-cup. Slug `best-argentine-players`.
@@ -182,5 +197,4 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [ ] Best Premier League midfielders 2026 (90/23) — premier-league. Slug `best-premier-league-midfielders`.
 - [ ] Best young midfielders in the world (70/17) — premier-league. Slug `best-young-midfielders`.
 - [ ] Best young defenders in the world (70/23) — premier-league. Slug `best-young-defenders`.
-- [ ] Richest football clubs in the world (50/6) — transfers. Slug `richest-football-clubs`. Revenue from the Deloitte Football Money League only.
-- [ ] Best MLS players 2026 (best mls players 2026 70/32) — rules. Slug `best-mls-players`. US audience; link to highest-paid-mls-players and liga-mx guide.
+- [ ] Richest soccer clubs in the world (richest soccer clubs 320/3, richest football clubs 50/6) — transfers. Slug `richest-soccer-clubs`. Revenue from the Deloitte Football Money League only.
