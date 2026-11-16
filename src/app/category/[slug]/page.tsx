@@ -11,6 +11,9 @@ import {
 import { MIN_ARTICLES_FOR_INDEXING } from "@/lib/constants";
 import type { SortOrder } from "@/lib/data";
 
+// Only real slugs exist; any other URL is a 404 served without a render.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const categories = await getCategories();
   return categories.map((c) => ({ slug: c.slug }));

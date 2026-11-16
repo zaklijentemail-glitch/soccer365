@@ -4,6 +4,9 @@ import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
 import { getAllTags, getTagBySlug, getNewsByTag } from "@/lib/data";
 
+// Only real slugs exist; any other URL is a 404 served without a render.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const tags = await getAllTags();
   return tags.map((t) => ({ slug: t.slug }));

@@ -14,6 +14,9 @@ import FaqAccordion from "@/components/ui/FaqAccordion";
 import AdSlot from "@/components/ui/AdSlot";
 import Container from "@/components/ui/Container";
 
+// Only real slugs exist; any other URL is a 404 served without a render.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const slugs = await getAllArticleSlugsWithType();
   return slugs.filter((s) => s.type === "news").map((s) => ({ slug: s.slug }));

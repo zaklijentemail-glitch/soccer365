@@ -5,10 +5,13 @@ import ArticleListing from "@/components/listing/ArticleListing";
 import { getNews, getCategories } from "@/lib/data";
 import type { SortOrder } from "@/lib/data";
 
-// Rendered on first request, then cached until the next deploy; content only
-// changes when the repo does, so there is nothing to recompute per request.
+// Every real page is built at deploy; anything else is a 404 without a render,
+// so crawlers probing /news/page/99 cost no function time.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-  return [];
+  const { totalPages } = await getNews({ page: 1, limit: 12 });
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({ page: String(i + 2) }));
 }
 
 export async function generateMetadata({

@@ -8,6 +8,9 @@ import { authorSchema } from "@/lib/seo/jsonld";
 import { getAllAuthors, getAuthorBySlug, getArticlesByAuthor } from "@/lib/data";
 import { SITE } from "@/lib/constants";
 
+// Only real slugs exist; any other URL is a 404 served without a render.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const authors = await getAllAuthors();
   return authors.map((a) => ({ slug: a.slug }));

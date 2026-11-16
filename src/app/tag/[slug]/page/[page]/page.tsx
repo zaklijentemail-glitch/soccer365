@@ -2,12 +2,19 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
-import { getTagBySlug, getNewsByTag } from "@/lib/data";
+import { getTagBySlug, getNewsByTag, getAllTags } from "@/lib/data";
 
-// Rendered on first request, then cached until the next deploy; content only
-// changes when the repo does, so there is nothing to recompute per request.
+// Every real page is built at deploy; anything else is a 404 without a render.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-  return [];
+  const tags = await getAllTags();
+  const params: { slug: string; page: string }[] = [];
+  for (const t of tags) {
+    const { totalPages } = await getNewsByTag(t.slug, { page: 1, limit: 12 });
+    for (let p = 2; p <= totalPages; p++) params.push({ slug: t.slug, page: String(p) });
+  }
+  return params;
 }
 
 export async function generateMetadata({

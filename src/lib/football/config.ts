@@ -27,9 +27,10 @@ export const COMPETITION_BY_CODE: Record<CompetitionCode, Competition> = Object.
  * since Next caches each unique request for the given number of seconds.
  * The matches window also sets how often the homepage and /results are
  * regenerated, which is most of the site's ISR and function time: hourly is
- * fresh enough for a fixtures list and halves that cost.
+ * fresh enough for a fixtures list. Raised to three hours on the Hobby plan's
+ * CPU limit: the fixtures are a side feature on a site read for its guides.
  */
-export const MATCHES_REVALIDATE_SECONDS = 3600;
-export const STANDINGS_REVALIDATE_SECONDS = 3600;
+export const MATCHES_REVALIDATE_SECONDS = 10800;
+export const STANDINGS_REVALIDATE_SECONDS = 10800;
 
 export const MAX_STANDINGS_GROUPS_DISPLAYED = 6;
