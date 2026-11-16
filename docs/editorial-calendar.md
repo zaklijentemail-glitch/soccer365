@@ -83,6 +83,23 @@ pound, ball, calendar, arrows. Every fact on the cover must also be in the artic
   trademark or logo other than kit badges dominates the frame. If no suitable Commons
   photo exists, use a pitch or leave out both `pitch` and `photo`.
 
+## Rankings (added 2026-11-16)
+
+Ranked lists are what this site wins with: ten "best ..." pages brought 76% of
+non-brand clicks in the four weeks to 2026-11-13, at 120 clicks per page against
+2-5 for every other page type. From here the queue is almost all lists.
+
+- Before writing, list `content/guides/` and check no existing page already targets
+  the same query (for example `best-right-backs-in-the-world` vs a new "best RBs").
+  If one does, stop and report instead of writing a near-duplicate.
+- Put the searched phrase in the title in the searcher's words. US-focused topics
+  ("best American soccer players", "highest paid MLS players") say "soccer"; the rest
+  keep British English. Keep the body in British English throughout.
+- State the ranking criteria in the second paragraph. Every entry gets a stat line
+  with the season it refers to, and a one-paragraph case for the placing.
+- "Of all time" lists rank on documented record (trophies, awards, caps, goals,
+  peak seasons), never on vibes; say how eras were weighed.
+
 ## Queue
 
 Target query, US monthly volume / keyword difficulty, then category.
@@ -125,10 +142,40 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] What was a half-back? Football's old positions and what became of them (fullback vs halfback 590/25) — tactics. Slug `half-back-old-football-positions`. Link to the formations hub. — 2026-11-11
 - [x] Promotion and relegation in Liga MX explained (ascenso y descenso liga mx 210/27) — rules. Slug `liga-mx-promotion-relegation-explained`. — 2026-11-13
 - [x] 2027 Women's World Cup: hosts, dates and format (2027 womens world cup 320/41) — world-cup. Slug `womens-world-cup-2027-format`. — 2026-11-16
-- [ ] Andy Cole and Dwight Yorke: the 1999 strike partnership (70/22) — premier-league. Slug `andy-cole-dwight-yorke-partnership`. Link to the 1999 treble guide.
-- [ ] Baresi and Maldini: how Milan's back four worked (baresi and maldini 70/21) — tactics. Slug `baresi-maldini-milan-defence`.
-- [ ] Academy contracts: scholarships and first professional deals (academy contracts 70/12) — rules. Slug `academy-contracts-scholarships-explained`. Link to the Dowman and Monga profiles.
-- [ ] Can football clubs swap players? Swap deals explained (can you trade players in soccer 50/22) — transfers. Slug `swap-deals-explained`.
-- [ ] How the Ballon d'Or is decided (ballon d or how to win 40/27) — rules. Slug `how-the-ballon-dor-is-decided`.
-- [ ] Premier League relegation rules and tiebreakers (premier league relegation rules 140/50) — rules. Slug `premier-league-relegation-rules`.
 - [ ] Best strikers in the world 2026 — premier-league. Slug `best-strikers-in-the-world`. Link to types-of-striker.
+- [ ] Best goalkeepers of all time (3,600/26) — premier-league. Slug `best-goalkeepers-of-all-time`. Link to the 2026 list and sweeper-keeper.
+- [ ] Best American soccer players of all time and now (best american soccer players 2,400/26, best usmnt players 170/32) — world-cup. Slug `best-american-soccer-players`.
+- [ ] Best midfielders of all time (2,400/26) — premier-league. Slug `best-midfielders-of-all-time`.
+- [ ] Best strikers of all time (1,900/32) — premier-league. Slug `best-strikers-of-all-time`. Link to types-of-striker and the 2026 strikers list.
+- [ ] Best soccer teams of all time (1,000/19) — champions-league. Slug `best-soccer-teams-of-all-time`. Link to Invincibles, 1999 treble, Centurions, Guardiola's Barcelona.
+- [ ] Best football managers of all time (1,000/25) — premier-league. Slug `best-football-managers-of-all-time`.
+- [ ] Best left wingers in the world 2026 (880/25) — premier-league. Slug `best-left-wingers-in-the-world`. Link to the wingers list.
+- [ ] Best right wingers in the world 2026 (590/21) — premier-league. Slug `best-right-wingers-in-the-world`. Link to the wingers list.
+- [ ] Best World Cup teams of all time (4,400/39) — world-cup. Slug `best-world-cup-teams`.
+- [ ] Highest paid MLS players 2026 (590/35) — rules. Slug `highest-paid-mls-players`. Source salaries from the MLS Players Association release only.
+- [ ] Tallest soccer players in the world (590/25) — premier-league. Slug `tallest-soccer-players`.
+- [ ] Biggest stadiums in the world (12,100/44) — world-cup. Slug `biggest-stadiums-in-the-world`. Capacities from the venue or governing body.
+- [ ] Best soccer games of all time (480/24) — world-cup. Slug `best-soccer-games-of-all-time`.
+- [ ] Best defensive midfielders of all time (390/24) — premier-league. Slug `best-defensive-midfielders-of-all-time`. Link to the 2026 list.
+- [ ] Highest paid soccer players in the world 2026 (2,400/48) — transfers. Slug `highest-paid-soccer-players`.
+- [ ] Best wingers of all time (260/17) — premier-league. Slug `best-wingers-of-all-time`.
+- [ ] Fastest soccer players in the world (260/27) — premier-league. Slug `fastest-soccer-players`. Only speeds published by a league, club or tracking provider.
+- [ ] Best Premier League defenders 2026 (210/21) — premier-league. Slug `best-premier-league-defenders`.
+- [ ] Best young goalkeepers in the world (210/15) — premier-league. Slug `best-young-goalkeepers`.
+- [ ] Best young strikers in the world (210/24) — premier-league. Slug `best-young-strikers`.
+- [ ] Most assists of all time (210/19) — premier-league. Slug `most-assists-of-all-time`.
+- [ ] Best Argentine players of all time (210/24) — world-cup. Slug `best-argentine-players`.
+- [ ] Best attacking midfielders (CAM) in the world 2026 (170/23, best cam in the world 170/29) — premier-league. Slug `best-attacking-midfielders-in-the-world`. Link to number-10 guide.
+- [ ] Best Premier League goalkeepers 2026 (170/24) — premier-league. Slug `best-premier-league-goalkeepers`.
+- [ ] Best Brazilian players of all time (170/35) — world-cup. Slug `best-brazilian-players`.
+- [ ] Best African players of all time (140/24) — world-cup. Slug `best-african-players`.
+- [ ] Best central midfielders in the world 2026 (140/23) — premier-league. Slug `best-central-midfielders-in-the-world`. Link to box-to-box and DM lists.
+- [ ] Best Premier League strikers 2026 (140/33) — premier-league. Slug `best-premier-league-strikers`.
+- [ ] Clubs with the most trophies in football (most trophies in football 140/32) — champions-league. Slug `most-trophies-in-football`.
+- [ ] Best Premier League teams of all time (110/22) — premier-league. Slug `best-premier-league-teams-of-all-time`.
+- [ ] Best Bundesliga players 2026 (110/19) — premier-league. Slug `best-bundesliga-players`.
+- [ ] Best free kick takers in the world (90/23) — premier-league. Slug `best-free-kick-takers`.
+- [ ] Best Premier League midfielders 2026 (90/23) — premier-league. Slug `best-premier-league-midfielders`.
+- [ ] Best young midfielders in the world (70/17) — premier-league. Slug `best-young-midfielders`.
+- [ ] Best young defenders in the world (70/23) — premier-league. Slug `best-young-defenders`.
+- [ ] Richest football clubs in the world (50/6) — transfers. Slug `richest-football-clubs`. Revenue from the Deloitte Football Money League only.
