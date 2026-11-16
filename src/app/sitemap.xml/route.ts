@@ -6,9 +6,6 @@ export async function GET() {
   <sitemap>
     <loc>${SITE.url}/sitemap-pages.xml</loc>
   </sitemap>
-  <sitemap>
-    <loc>${SITE.url}/sitemap-news.xml</loc>
-  </sitemap>
 </sitemapindex>`;
 
   return new Response(body, {

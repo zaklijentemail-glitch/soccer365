@@ -271,15 +271,6 @@ export async function getAllArticleSlugsWithType(): Promise<
     }));
 }
 
-export async function getRecentNewsForNewsSitemap(hours = 48): Promise<Article[]> {
-  const cutoff = Date.now() - hours * 60 * 60 * 1000;
-  const entries = await getAllNewsEntries();
-  return entries
-    .map(toArticle)
-    .filter((a) => !a.noindex && new Date(a.published_at).getTime() >= cutoff)
-    .sort(byDateDesc);
-}
-
 export type { Article, Category, PaginatedResult, Tag, TagWithCount } from "./types";
 
 /**
