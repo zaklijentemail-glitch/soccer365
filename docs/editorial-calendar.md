@@ -97,6 +97,10 @@ non-brand clicks in the four weeks to 2026-11-13, at 120 clicks per page against
   keep British English. Keep the body in British English throughout.
 - State the ranking criteria in the second paragraph. Every entry gets a stat line
   with the season it refers to, and a one-paragraph case for the placing.
+- Every ranked list carries the tag `rankings` (plus position or theme tags). The
+  /rankings hub and the "More rankings" block under each list are built from that
+  tag, and lists with "of-all-time" in the slug are grouped as all-time. Number the
+  entries as `## 1. Name (Club, Country)` headings: the hub reads its top three from them.
 - "Of all time" lists rank on documented record (trophies, awards, caps, goals,
   peak seasons), never on vibes; say how eras were weighed.
 
