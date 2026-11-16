@@ -88,15 +88,16 @@ export default function CookiePolicyPage() {
 
       <h2>Your Consent</h2>
       <p>
-        If you are in the UK or the EEA, we ask for your consent before setting any analytics or
-        advertising cookies, using a consent banner on your first visit. Nothing beyond the
-        strictly necessary cookies is set until you make a choice, and you can accept some
-        categories and refuse others.
+        If you are in the UK, the EEA or Switzerland, we ask for your consent before setting any
+        analytics or advertising cookies, using Google&apos;s consent message on your first visit.
+        Nothing beyond the strictly necessary cookies is set until you make a choice, and you can
+        accept some purposes and refuse others. Elsewhere, advertising cookies are set by default,
+        and you can control them in your browser or through Google&apos;s ad settings.
       </p>
 
       <h2>Changing or Withdrawing Consent</h2>
       <p>
-        You can change your mind at any time. Reopen the cookie settings from the{" "}
+        You can change your mind at any time. Reopen the consent message from the{" "}
         <strong>Cookie settings</strong>{" "}link in the site footer, and your new choice replaces
         the old one straight away. Withdrawing consent does not affect processing that already
         happened while consent was in place.
@@ -107,7 +108,7 @@ export default function CookiePolicyPage() {
         Every major browser lets you block or delete cookies, either for all sites or site by
         site, in its privacy or site-settings menu. Blocking all cookies will break parts of
         this and most other websites. Clearing your cookies also clears the record of your
-        consent choice, so the banner will appear again on your next visit.
+        consent choice, so the consent message will appear again on your next visit.
       </p>
 
       <h2>Changes to This Policy</h2>

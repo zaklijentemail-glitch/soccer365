@@ -35,7 +35,7 @@ export const PLACEHOLDER_COVER = "/images/default.jpg";
 /** Social and structured-data fallback when an article has no photograph. */
 export const SOCIAL_FALLBACK_IMAGE = "/images/og-image.webp";
 
-export const POLICY_UPDATED = "30 September 2026";
+export const POLICY_UPDATED = "16 November 2026";
 
 /**
  * An archive holding fewer articles than this is too thin to be worth

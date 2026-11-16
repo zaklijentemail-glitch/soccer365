@@ -3,7 +3,6 @@ import { Inter, Oswald } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
-import CookieBanner from "@/components/consent/CookieBanner";
 import { CONSENT_BOOTSTRAP_SCRIPT } from "@/lib/consent";
 import { rootGraphSchema } from "@/lib/seo/jsonld";
 import { ADSENSE_CLIENT_ID, SITE } from "@/lib/constants";
@@ -109,7 +108,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <CookieBanner />
       </body>
     </html>
   );

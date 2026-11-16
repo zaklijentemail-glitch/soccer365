@@ -37,7 +37,8 @@ export default function PrivacyPolicyPage() {
         and, where you have given consent, to serve personalised advertising and measure site
         performance. You can control or disable cookies through your browser settings, though
         some site features may not work correctly without them. Where required by law, we will
-        request your consent before setting non-essential cookies via a cookie-consent banner.
+        request your consent before setting non-essential cookies, through Google&apos;s consent
+        message shown to visitors in the UK, the EEA and Switzerland.
       </p>
 
       <h2>Third-Party Advertising (Google AdSense)</h2>
