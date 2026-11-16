@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getNewsBySlug, getRelatedNews, getAllArticleSlugsWithType } from "@/lib/data";
+import { getNewsBySlug, getRelatedNews, getAllArticleSlugsWithType, getRankings } from "@/lib/data";
+import MoreRankings from "@/components/article/MoreRankings";
 import { SITE, SOCIAL_FALLBACK_IMAGE } from "@/lib/constants";
 import { articleSchema } from "@/lib/seo/jsonld";
 import JsonLd from "@/components/seo/JsonLd";
@@ -61,6 +62,8 @@ export default async function GuideArticlePage({
   if (!article || article.type !== "guide") notFound();
 
   const related = await getRelatedNews(article.id, article.category.id, 3);
+  const isRanking = article.tags.some((t) => t.slug === "rankings");
+  const rankings = isRanking ? await getRankings() : [];
   const url = `${SITE.url}/guides/${article.slug}`;
 
   return (
@@ -81,6 +84,8 @@ export default async function GuideArticlePage({
 
         <ArticleBody content={article.content} />
         {article.editors_take && <EditorsTake text={article.editors_take} />}
+
+        {isRanking && <MoreRankings rankings={rankings} currentSlug={article.slug} />}
 
         {article.faq && <FaqAccordion items={article.faq} />}
 

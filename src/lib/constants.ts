@@ -117,8 +117,8 @@ export const EXPERTISE = [
 
 export const NAV_LINKS = [
   { label: "News", href: "/news" },
-  { label: "Results", href: "/results" },
   { label: "Guides", href: "/guides" },
+  { label: "Rankings", href: "/rankings" },
   { label: "Premier League", href: "/category/premier-league" },
   { label: "Transfers", href: "/category/transfers" },
   { label: "Tactics", href: "/category/tactics" },
@@ -136,8 +136,8 @@ export const SOCIAL_LINKS: { label: string; href: string; platform: SocialPlatfo
 /** Single inline row of footer links, goal.com-style, pipe-separated. */
 export const FOOTER_INLINE_LINKS = [
   { label: "News", href: "/news" },
-  { label: "Results", href: "/results" },
   { label: "Guides", href: "/guides" },
+  { label: "Rankings", href: "/rankings" },
   { label: "Premier League", href: "/category/premier-league" },
   { label: "Transfers", href: "/category/transfers" },
   { label: "Tactics", href: "/category/tactics" },

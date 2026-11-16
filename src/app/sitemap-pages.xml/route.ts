@@ -38,6 +38,7 @@ export async function GET() {
     urlEntry(SITE.url, lastmod.site, "hourly", "1.0"),
     urlEntry(`${SITE.url}/news`, lastmod.news, "hourly", "0.9"),
     urlEntry(`${SITE.url}/guides`, lastmod.guides, "weekly", "0.8"),
+    urlEntry(`${SITE.url}/rankings`, lastmod.guides, "weekly", "0.8"),
     urlEntry(`${SITE.url}/about`, policyLastmod, "yearly", "0.4"),
     urlEntry(`${SITE.url}/contact`, policyLastmod, "yearly", "0.4"),
     urlEntry(`${SITE.url}/editorial-policy`, policyLastmod, "yearly", "0.4"),

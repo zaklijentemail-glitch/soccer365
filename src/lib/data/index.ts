@@ -271,6 +271,35 @@ export async function getAllArticleSlugsWithType(): Promise<
     }));
 }
 
+/** A ranked-list guide, with the first entries read from its own headings. */
+export interface Ranking {
+  article: Article;
+  allTime: boolean;
+  /** Names from the article's "## 1. Name (Club, Country)" headings, top three. */
+  top: string[];
+}
+
+/**
+ * Every guide tagged "rankings", newest first. The top three come from the
+ * numbered headings the lists are written with, so the hub and the "More
+ * rankings" block can never disagree with the article itself.
+ */
+export async function getRankings(): Promise<Ranking[]> {
+  const entries = await getAllGuideEntries();
+  return entries
+    .map(toArticle)
+    .filter((a) => !a.noindex && a.tags.some((t) => t.slug === "rankings"))
+    .sort(byDateDesc)
+    .map((article) => {
+      const top: string[] = [];
+      for (const m of article.content.matchAll(/^## ([123])\. (.+?)(?: \(|$)/gm)) {
+        top.push(m[2].trim());
+        if (top.length === 3) break;
+      }
+      return { article, allTime: /of-all-time|all-time/.test(article.slug), top };
+    });
+}
+
 export type { Article, Category, PaginatedResult, Tag, TagWithCount } from "./types";
 
 /**
