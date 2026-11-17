@@ -146,7 +146,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] What was a half-back? Football's old positions and what became of them (fullback vs halfback 590/25) — tactics. Slug `half-back-old-football-positions`. Link to the formations hub. — 2026-11-11
 - [x] Promotion and relegation in Liga MX explained (ascenso y descenso liga mx 210/27) — rules. Slug `liga-mx-promotion-relegation-explained`. — 2026-11-13
 - [x] 2027 Women's World Cup: hosts, dates and format (2027 womens world cup 320/41) — world-cup. Slug `womens-world-cup-2027-format`. — 2026-11-16
-- [ ] Best American soccer players of all time and now (best american soccer players 2,400/26, best usmnt players 170/32) — world-cup. Slug `best-american-soccer-players`.
+- [x] Best American soccer players of all time and now (best american soccer players 2,400/26, best usmnt players 170/32) — world-cup. Slug `best-american-soccer-players`. — 2026-11-17
 - [ ] Highest paid MLS players 2026 (590/35) — rules. Slug `highest-paid-mls-players`. Source salaries from the MLS Players Association release only.
 - [ ] Best soccer players in the world right now (5,400/31) — premier-league. Slug `best-soccer-players-in-the-world`. US phrasing in the title. Link to every position list and /rankings.
 - [ ] Best soccer movies of all time (1,600/9) — world-cup. Slug `best-soccer-movies`. Year, director and one line on why each belongs; no plot spoilers.
