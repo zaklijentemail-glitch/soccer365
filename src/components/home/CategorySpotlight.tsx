@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import type { Category } from "@/lib/data/types";
 
 export default function CategorySpotlight({ categories }: { categories: Category[] }) {

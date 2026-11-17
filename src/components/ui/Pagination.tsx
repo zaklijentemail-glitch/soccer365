@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 
 function getPageWindow(current: number, total: number): (number | "ellipsis")[] {
   if (total <= 7) {

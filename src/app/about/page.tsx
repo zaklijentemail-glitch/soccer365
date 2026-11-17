@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import LegalPage from "@/components/legal/LegalPage";
 import Image from "next/image";
 import { EDITOR, OWNER, SITE } from "@/lib/constants";

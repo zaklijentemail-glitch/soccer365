@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import Container from "@/components/ui/Container";
 import Logo from "./Logo";
 import MobileNav from "./MobileNav";

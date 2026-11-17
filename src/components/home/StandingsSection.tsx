@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import CompetitionSwitcher from "./CompetitionSwitcher";
 import StandingsTable from "./StandingsTable";
 import WorldCupKnockoutView from "./WorldCupKnockout";

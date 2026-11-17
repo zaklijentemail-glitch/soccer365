@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import type { PaginatedResult, Article, Category } from "@/lib/data/types";
 import type { SortOrder } from "@/lib/data";
 import type { BreadcrumbItem } from "@/components/ui/Breadcrumbs";

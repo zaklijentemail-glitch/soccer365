@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import Container from "@/components/ui/Container";
 import ArticleListing from "@/components/listing/ArticleListing";
 import { getGuides } from "@/lib/data";

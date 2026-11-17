@@ -1,6 +1,6 @@
 import Image from "next/image";
 import CoverFallback from "@/components/ui/CoverFallback";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import type { Article } from "@/lib/data/types";
 import { formatDate } from "@/lib/utils";
 import { EDITOR } from "@/lib/constants";

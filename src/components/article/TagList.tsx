@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import type { Tag } from "@/lib/data/types";
 
 export default function TagList({ tags }: { tags: Tag[] }) {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import Container from "@/components/ui/Container";
 import AdSlot from "@/components/ui/AdSlot";
 import { GuideCard } from "@/components/ui/ArticleCard";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { useEffect, useMemo, useState } from "react";
 import CompetitionSwitcher, { type CompetitionOption } from "./CompetitionSwitcher";
 import MatchRow from "@/components/football/MatchRow";
