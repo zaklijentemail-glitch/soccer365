@@ -148,7 +148,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] 2027 Women's World Cup: hosts, dates and format (2027 womens world cup 320/41) — world-cup. Slug `womens-world-cup-2027-format`. — 2026-11-16
 - [x] Best American soccer players of all time and now (best american soccer players 2,400/26, best usmnt players 170/32) — world-cup. Slug `best-american-soccer-players`. — 2026-11-17
 - [x] Highest paid MLS players 2026 (590/35) — rules. Slug `highest-paid-mls-players`. Source salaries from the MLS Players Association release only. — 2026-11-17
-- [ ] Best soccer players in the world right now (5,400/31) — premier-league. Slug `best-soccer-players-in-the-world`. US phrasing in the title. Link to every position list and /rankings.
+- [x] Best soccer players in the world right now (5,400/31) — premier-league. Slug `best-soccer-players-in-the-world`. US phrasing in the title. Link to every position list and /rankings. — 2026-11-18
 - [ ] Best soccer movies of all time (1,600/9) — world-cup. Slug `best-soccer-movies`. Year, director and one line on why each belongs; no plot spoilers.
 - [ ] MLS expansion teams: every new club and when it joined (1,300/33) — rules. Slug `mls-expansion-teams`. Source from MLS official announcements.
 - [ ] Best strikers in the world 2026 — premier-league. Slug `best-strikers-in-the-world`. Link to types-of-striker.
