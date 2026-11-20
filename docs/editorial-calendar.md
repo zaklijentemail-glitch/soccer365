@@ -151,7 +151,7 @@ Target query, US monthly volume / keyword difficulty, then category.
 - [x] Best soccer players in the world right now (5,400/31) — premier-league. Slug `best-soccer-players-in-the-world`. US phrasing in the title. Link to every position list and /rankings. — 2026-11-18
 - [x] Best soccer movies of all time (1,600/9) — world-cup. Slug `best-soccer-movies`. Year, director and one line on why each belongs; no plot spoilers. — 2026-11-19
 - [x] MLS expansion teams: every new club and when it joined (1,300/33) — rules. Slug `mls-expansion-teams`. Source from MLS official announcements. — 2026-11-19
-- [ ] Best strikers in the world 2026 — premier-league. Slug `best-strikers-in-the-world`. Link to types-of-striker.
+- [x] Best strikers in the world 2026 — premier-league. Slug `best-strikers-in-the-world`. Link to types-of-striker. — 2026-11-20
 - [ ] Best goalkeepers of all time (3,600/26; also "best soccer goalies of all time" 480/35, use "goalies" in the H1 or first paragraph) — premier-league. Slug `best-goalkeepers-of-all-time`. Link to the 2026 list and sweeper-keeper.
 - [ ] Best soccer documentaries (720/13) — world-cup. Slug `best-soccer-documentaries`.
 - [ ] MLS playoffs format explained (720/22) — rules. Slug `mls-playoffs-format`. Current season format from MLS official sources.
